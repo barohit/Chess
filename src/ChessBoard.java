@@ -86,8 +86,8 @@ public class ChessBoard {
 		switch (s.length()) {
 		case 2:
 			char a = s.charAt(0);
-			int b = (int) s.charAt(1);
-			for (int i = 0; i < 8; i++) {
+			int b = Character.getNumericValue(s.charAt(1));
+			outerloop: for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {
 					if (chessBoard[i][j].getPiece() != null) {
 						if (chessBoard[i][j].getPiece().getIdentity().equals("Pawn")
@@ -95,12 +95,14 @@ public class ChessBoard {
 							if (count % 2 == 1) {
 								if (chessBoard[i][j].getPiece().getColor().equals("white")) {
 									chessBoard[i][j].getPiece().move(getSquare(b, a));
+									break outerloop;
 								}
 							}
 
-							if (count % 2 == 0) {
+							else if (count % 2 == 0) {
 								if (chessBoard[i][j].getPiece().getColor().equals("black")) {
 									chessBoard[i][j].getPiece().move(getSquare(b, a));
+									break outerloop;
 								}
 							}
 						}
@@ -112,7 +114,7 @@ public class ChessBoard {
 		case 3:
 			char x = s.charAt(0);
 			char y = s.charAt(1);
-			int z = (int) s.charAt(2);
+			int z = Character.getNumericValue(s.charAt(2));
 			switch (x) {
 			case 'K':
 				for (int i = 0; i < 8; i++) {
@@ -137,7 +139,7 @@ public class ChessBoard {
 				}
 				break;
 			case 'Q':
-				for (int i = 0; i < 8; i++) {
+				outerloop: for (int i = 0; i < 8; i++) {
 					for (int j = 0; j < 8; j++) {
 						if (chessBoard[i][j].getPiece() != null) {
 							if (chessBoard[i][j].getPiece().getIdentity().equals("Queen")
@@ -145,12 +147,14 @@ public class ChessBoard {
 								if (count % 2 == 1) {
 									if (chessBoard[i][j].getPiece().getColor().equals("white")) {
 										chessBoard[i][j].getPiece().move(getSquare(z, y));
+										break outerloop;
 									}
 								}
 
-								if (count % 2 == 0) {
+								else if (count % 2 == 0) {
 									if (chessBoard[i][j].getPiece().getColor().equals("black")) {
 										chessBoard[i][j].getPiece().move(getSquare(z, y));
+										break outerloop;
 									}
 								}
 							}
@@ -229,11 +233,12 @@ public class ChessBoard {
 			default:
 				System.out.println("Sorry, you entered an invalid move");
 			}
+			break;
 		case 4:
 			char first = s.charAt(0);
 			char second = s.charAt(1);
 			char third = s.charAt(2);
-			char fourth = s.charAt(3);
+			int fourth = Character.getNumericValue(s.charAt(3));
 			if (second == 'x') {
 				if (Character.isLowerCase(first) == true) {
 					for (int i = 0; i < 8; i++) {
@@ -440,29 +445,29 @@ public class ChessBoard {
 			}
 
 		case 5:
-			char uno = s.charAt(0);
-			char dos = s.charAt(1);
-			char quatro = s.charAt(3);
-			char cinco = s.charAt(4);
-			switch (uno) {
+			char un = s.charAt(0);
+			char dd = s.charAt(1);
+			char quatr = s.charAt(3);
+			int cinc = Character.getNumericValue(s.charAt(4));
+			switch (un) {
 
 			case 'R':
 				for (int i = 0; i < 8; i++) {
 					for (int j = 0; j < 8; j++) {
 						if (chessBoard[i][j].getPiece() != null) {
 							if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
-									&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == dos
-											|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == dos)
-									&& chessBoard[i][j].getPiece().canMove(getSquare(cinco, quatro))) {
+									&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == dd
+											|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == dd)
+									&& chessBoard[i][j].getPiece().canMove(getSquare(cinc, quatr))) {
 								if (count % 2 == 1) {
 									if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-										chessBoard[i][j].getPiece().move(getSquare(cinco, quatro));
+										chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
 									}
 								}
 
 								if (count % 2 == 0) {
 									if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-										chessBoard[i][j].getPiece().move(getSquare(cinco, quatro));
+										chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
 									}
 								}
 							}
@@ -475,18 +480,18 @@ public class ChessBoard {
 					for (int j = 0; j < 8; j++) {
 						if (chessBoard[i][j].getPiece() != null) {
 							if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
-									&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == dos
-											|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == dos)
-									&& chessBoard[i][j].getPiece().canMove(getSquare(cinco, quatro))) {
+									&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == dd
+											|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == dd)
+									&& chessBoard[i][j].getPiece().canMove(getSquare(cinc, quatr))) {
 								if (count % 2 == 1) {
 									if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-										chessBoard[i][j].getPiece().move(getSquare(cinco, quatro));
+										chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
 									}
 								}
 
 								else if (count % 2 == 0) {
 									if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-										chessBoard[i][j].getPiece().move(getSquare(cinco, quatro));
+										chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
 									}
 								}
 							} else {
@@ -636,13 +641,13 @@ public class ChessBoard {
 		chessBoard[1][6].setPiece(whitePawn7);
 		chessBoard[1][7].setPiece(whitePawn8);
 		chessBoard[6][0].setPiece(blackPawn1);
-		chessBoard[6][1].setPiece(blackPawn1);
-		chessBoard[6][2].setPiece(blackPawn1);
-		chessBoard[6][3].setPiece(blackPawn1);
-		chessBoard[6][4].setPiece(blackPawn1);
-		chessBoard[6][5].setPiece(blackPawn1);
-		chessBoard[6][6].setPiece(blackPawn1);
-		chessBoard[6][7].setPiece(blackPawn1);
+		chessBoard[6][1].setPiece(blackPawn2);
+		chessBoard[6][2].setPiece(blackPawn3);
+		chessBoard[6][3].setPiece(blackPawn4);
+		chessBoard[6][4].setPiece(blackPawn5);
+		chessBoard[6][5].setPiece(blackPawn6);
+		chessBoard[6][6].setPiece(blackPawn7);
+		chessBoard[6][7].setPiece(blackPawn8);
 		chessBoard[0][0].setPiece(whiteRook);
 		chessBoard[0][7].setPiece(whiteRook2);
 		chessBoard[7][0].setPiece(blackRook);

@@ -18,13 +18,18 @@ public class Square {
 	}
 
 	protected Piece getPiece() {
-		return this.currentPiece;
+		if (this.currentPiece != null)
+			return this.currentPiece;
+		else
+			return null;
 	}
 
 	protected void setPiece(Piece piece) {
 		if (piece != null) {
 			piece.setCurrentPosition(this);
 
+			currentPiece = piece;
+		} else if (piece == null) {
 			currentPiece = piece;
 		}
 
@@ -116,7 +121,7 @@ public class Square {
 	}
 
 	protected int getRowValueFromRow(int roww) {
-		return row - 1;
+		return roww - 1;
 	}
 
 	protected void convertColumnValueToColumn(Square square) {
@@ -267,23 +272,23 @@ public class Square {
 			break;
 
 		case 'd':
-			result = 4;
+			result = 3;
 			break;
 
 		case 'e':
-			result = 5;
+			result = 4;
 			break;
 
 		case 'f':
-			result = 6;
+			result = 5;
 			break;
 
 		case 'g':
-			result = 7;
+			result = 6;
 			break;
 
-		case '8':
-			result = 8;
+		case 'h':
+			result = 7;
 			break;
 
 		default:

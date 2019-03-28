@@ -14,96 +14,116 @@ public class Pawn extends Piece {
 
 	protected boolean canMove(Square enemyPosition) {
 		boolean result = false;
-		if ((getColor().equals("white")
-				&& getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
-						.getColumnValue()].getRowValue() <= 7)
-				&& getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
-						.getColumnValue()].getPiece().equals(null)) {
-			ChessBoard temp = new ChessBoard();
-			temp = chessBoard;
-			temp.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition().getColumnValue()]
-					.setPiece(null);
-			if (temp.kingInCheck(getColor(), temp) == false) {
-				result = true;
-			}
-
-		} else {
-			if (getColor().equals("white") && getChessBoard().oppositeColor(this, enemyPosition.getPiece())
-					&& (enemyPosition.getRowValue() - 1 == getCurrentPosition().getRowValue()
-							&& Math.abs(enemyPosition.getColumnValue() - 1) == getCurrentPosition().getColumnValue())) {
-				ChessBoard temp = chessBoard;
+		if (getColor().equals("white")) {
+			if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
+					.getColumnValue()].getRowValue() <= 7
+					&& getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
+							.getColumnValue()].getPiece() == null) {
+				ChessBoard temp = new ChessBoard();
+				temp = chessBoard;
+				Square returnPosition = getCurrentPosition();
 				temp.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition().getColumnValue()]
 						.setPiece(null);
 				if (temp.kingInCheck(getColor(), temp) == false) {
-					result = true;
+					if (enemyPosition.getColumnValue() == this.getCurrentPosition().getColumnValue())
+						result = true;
+				}
+				getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()]
+						.setPiece(this);
+			} else {
+				if (getChessBoard().oppositeColor(this, enemyPosition.getPiece())
+						&& (enemyPosition.getRowValue() - 1 == getCurrentPosition().getRowValue() && Math
+								.abs(enemyPosition.getColumnValue() - 1) == getCurrentPosition().getColumnValue())) {
+					ChessBoard temp = chessBoard;
+					temp.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition().getColumnValue()]
+							.setPiece(null);
+					if (temp.kingInCheck(getColor(), temp) == false) {
+						result = true;
+					}
 				}
 			}
-
-			else if (getColor().equals("black") && getChessBoard().oppositeColor(this, enemyPosition.getPiece())
-					&& (enemyPosition.getRowValue() + 1 == getCurrentPosition().getRowValue()
-							&& Math.abs(enemyPosition.getColumnValue() - 1) == getCurrentPosition().getColumnValue())) {
-				ChessBoard temp2 = chessBoard;
+		} else if (getColor().equals("black")) {
+			if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 1][getCurrentPosition()
+					.getColumnValue()].getRowValue() >= 0
+					&& getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 1][getCurrentPosition()
+							.getColumnValue()].getPiece() == null) {
+				ChessBoard temp2 = new ChessBoard();
+				temp2 = chessBoard;
+				Square returnPosition2 = getCurrentPosition();
 				temp2.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition().getColumnValue()]
 						.setPiece(null);
 				if (temp2.kingInCheck(getColor(), temp2) == false) {
-					result = true;
+					if (enemyPosition.getColumnValue() == this.getCurrentPosition().getColumnValue())
+						result = true;
+				}
+				getChessBoard().getChessBoardArray()[returnPosition2.getRowValue()][returnPosition2.getColumnValue()]
+						.setPiece(this);
+			} else {
+				if (getChessBoard().oppositeColor(this, enemyPosition.getPiece())
+
+						&& (enemyPosition.getRowValue() + 1 == getCurrentPosition().getRowValue() && Math
+								.abs(enemyPosition.getColumnValue() - 1) == getCurrentPosition().getColumnValue())) {
+					ChessBoard temp2 = chessBoard;
+					temp2.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition()
+							.getColumnValue()].setPiece(null);
+					if (temp2.kingInCheck(getColor(), temp2) == false) {
+						result = true;
+					}
 				}
 			}
 		}
 		return result;
+
 	}
 
-	protected void moveTwo() {
-		if ((getColor().equals("white") && (getCurrentPosition().getRow() == 2))) {
+	protected void move(Square s) {
+
+		if ((getColor().equals("white") && (getCurrentPosition().getRow() == 2)
+				&& ((s.getColumnValue() == getCurrentPosition().getColumnValue())
+						&& s.getRowValue() - 2 == getCurrentPosition().getRowValue()))) {
 
 			// these two lines update the current position's row value.
 			if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 2][getCurrentPosition()
-					.getColumnValue()].getPiece().equals(null)
+					.getColumnValue()].getPiece() == null
 					&& getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
-							.getColumnValue()].getPiece().equals(null)) {
+							.getColumnValue()].getPiece() == null) {
 
 				getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 2][currentPosition
 						.getColumnValue()].setPiece(this);
 				getChessBoard().getChessBoardArray()[currentPosition.getRowValue() - 2][currentPosition
 						.getColumnValue()].setPiece(null);
 			}
-		} else if ((getColor().equals("black") && (getCurrentPosition().getRow() == 7))) {
+		} else if ((getColor().equals("black") && (getCurrentPosition().getRow() == 7)
+				&& (s.getColumnValue() == getCurrentPosition().getColumnValue())
+				&& s.getRowValue() + 2 == getCurrentPosition().getRowValue())) {
+			{
 
-			if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 2][getCurrentPosition()
-					.getColumnValue()].getPiece().equals(null)
-					&& getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 1][getCurrentPosition()
-							.getColumnValue()].getPiece().equals(null)) {
+				if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 2][getCurrentPosition()
+						.getColumnValue()].getPiece() == null
+						&& getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()
+								- 1][getCurrentPosition().getColumnValue()].getPiece() == null) {
 
-				getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 2][getCurrentPosition()
-						.getColumnValue()].setPiece(this);
-				getChessBoard().getChessBoardArray()[currentPosition.getRowValue() + 2][currentPosition
-						.getColumnValue()].setPiece(null);
+					getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 2][getCurrentPosition()
+							.getColumnValue()].setPiece(this);
+					getChessBoard().getChessBoardArray()[currentPosition.getRowValue() + 2][currentPosition
+							.getColumnValue()].setPiece(null);
+				}
 			}
-		}
-	}
-
-	protected void moveOne() {
-		if ((getColor().equals("white"))) {
+		} else if ((getColor().equals("white"))) {
 			if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
-					.getColumnValue()].getPiece().equals(null)) {
+					.getColumnValue()].getPiece() == null) {
 				getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
 						.getColumnValue()].setPiece(this);
 				getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 1][getCurrentPosition()
 						.getColumnValue()].setPiece(null);
 			}
-		}
-
-		else if ((getColor().equals("black"))) {
-			/*
-			 * next two lines move change the piece of the end square to this pawn, and that
-			 * of the old square to empty
-			 */
+		} else if ((getColor().equals("black"))) {
 			if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 1][getCurrentPosition()
-					.getColumnValue()].getPiece().equals(null)) {
+					.getColumnValue()].getPiece() == null) {
 				this.getChessBoard().getChessBoardArray()[currentPosition.getRowValue() - 1][currentPosition
-						.getColumnValue()].currentPiece = this;
+						.getColumnValue()].setPiece(this);
 				this.getChessBoard().getChessBoardArray()[currentPosition.getRowValue() + 1][currentPosition
-						.getColumnValue()].currentPiece = null;
+						.getColumnValue()].setPiece(null);
 			}
 		}
 	}

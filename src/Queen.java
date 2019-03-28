@@ -64,14 +64,15 @@ public class Queen extends Piece {
 					if (s.getRowValue() < getCurrentPosition().getRowValue()
 							&& s.getColumnValue() > getCurrentPosition().getColumnValue()) {
 						int i = 0;
-						while (getCurrentPosition().getRowValue() > s.getRowValue()
-								&& getCurrentPosition().getColumnValue() < s.getColumnValue()) {
+						while (getCurrentPosition().getRowValue() >= (s.getRowValue() + i)
+								&& getCurrentPosition().getColumnValue() <= (s.getColumnValue() - i)) {
 							if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()
-									- i][getCurrentPosition().getColumnValue() + i].getPiece().equals(this)
-									&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()
-											- i][getCurrentPosition().getColumnValue() + i].getPiece().equals(null)))) {
-								result = false;
+									- i][getCurrentPosition().getColumnValue() + i].getPiece() == null)) {
+								if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()
+										- i][getCurrentPosition().getColumnValue() + i].getPiece().equals(this))) {
 
+									result = false;
+								}
 							}
 							i++;
 						}
@@ -80,8 +81,10 @@ public class Queen extends Piece {
 					if (s.getRowValue() < getCurrentPosition().getRowValue()
 							&& s.getColumnValue() < getCurrentPosition().getColumnValue()) {
 						int i = 0;
+
 						while (getCurrentPosition().getRowValue() > s.getRowValue()
 								&& getCurrentPosition().getColumnValue() > s.getColumnValue()) {
+
 							if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()
 									- i][getCurrentPosition().getColumnValue() - i].getPiece().equals(this)
 									&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()
@@ -224,78 +227,79 @@ public class Queen extends Piece {
 					while (getCurrentPosition().getRowValue() > s.getRowValue()
 							&& getCurrentPosition().getColumnValue() > s.getColumnValue()) {
 						if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()
-								- i][getCurrentPosition().getColumnValue() - i].getPiece().equals(this)
-								&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()
-										+ i][getCurrentPosition().getColumnValue() + i].getPiece().equals(null)))) {
-							result = false;
+								+ i][getCurrentPosition().getColumnValue() + i].getPiece().equals(null))) {
+							if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()
+									- i][getCurrentPosition().getColumnValue() - i].getPiece().equals(this))) {
+								result = false;
 
+							}
+							i++;
 						}
-						i++;
+					}
+
+				}
+
+				else if (s.getColumnValue() == getCurrentPosition().getColumnValue()) {
+					if (s.getRowValue() > getCurrentPosition().getRowValue()) {
+						int i = getCurrentPosition().getRowValue();
+						while (i < s.getRowValue()) {
+							if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i].getPiece()
+									.equals(this))
+									&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i]
+											.getPiece().equals(null))) {
+								result = false;
+							}
+							i++;
+						}
+					}
+
+					if (s.getRowValue() < getCurrentPosition().getRowValue()) {
+						int i = getCurrentPosition().getRowValue();
+						while (i > s.getRowValue()) {
+							if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i].getPiece()
+									.equals(this))
+									&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i]
+											.getPiece().equals(null))) {
+								result = false;
+							}
+							i--;
+						}
 					}
 				}
 
-			}
-
-			else if (s.getColumnValue() == getCurrentPosition().getColumnValue()) {
-				if (s.getRowValue() > getCurrentPosition().getRowValue()) {
-					int i = getCurrentPosition().getRowValue();
-					while (i < s.getRowValue()) {
-						if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i].getPiece()
-								.equals(this))
-								&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i]
-										.getPiece().equals(null))) {
-							result = false;
+				else if (s.getRowValue() == getCurrentPosition().getRowValue()) {
+					if (s.getColumnValue() > getCurrentPosition().getColumnValue()) {
+						int i = getCurrentPosition().getColumnValue();
+						while (i < s.getRowValue()) {
+							if (!(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
+									.getPiece().equals(this))
+									&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
+											.getPiece().equals(null))) {
+								result = false;
+							}
+							i++;
 						}
-						i++;
 					}
-				}
 
-				if (s.getRowValue() < getCurrentPosition().getRowValue()) {
-					int i = getCurrentPosition().getRowValue();
-					while (i > s.getRowValue()) {
-						if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i].getPiece()
-								.equals(this))
-								&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i]
-										.getPiece().equals(null))) {
-							result = false;
+					if (s.getColumnValue() < getCurrentPosition().getColumnValue()) {
+						int i = getCurrentPosition().getRowValue();
+						while (i > s.getRowValue()) {
+							if (!(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
+									.getPiece().equals(this))
+									&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
+											.getPiece().equals(null))) {
+								result = false;
+							}
+							i--;
 						}
-						i--;
 					}
+				} else {
+					result = false;
 				}
-			}
-
-			else if (s.getRowValue() == getCurrentPosition().getRowValue()) {
-				if (s.getColumnValue() > getCurrentPosition().getColumnValue()) {
-					int i = getCurrentPosition().getColumnValue();
-					while (i < s.getRowValue()) {
-						if (!(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()].getPiece()
-								.equals(this))
-								&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
-										.getPiece().equals(null))) {
-							result = false;
-						}
-						i++;
-					}
-				}
-
-				if (s.getColumnValue() < getCurrentPosition().getColumnValue()) {
-					int i = getCurrentPosition().getRowValue();
-					while (i > s.getRowValue()) {
-						if (!(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()].getPiece()
-								.equals(this))
-								&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
-										.getPiece().equals(null))) {
-							result = false;
-						}
-						i--;
-					}
-				}
-			} else {
+			} else
 				result = false;
-			}
-		} else
-			result = false;
 
+		}
 		return result;
 	}
 

@@ -55,7 +55,7 @@ public class Knight extends Piece {
 		return result;
 	}
 
-	public void Move(Square s) {
+	public void move(Square s) {
 		if (canMove(s) == true) {
 			Square tempPosition = this.getCurrentPosition();
 			s.setPiece(this);

@@ -337,17 +337,41 @@ public class ChessBoard {
 			default:
 				System.out.println("Sorry, you entered an invalid move");
 				break;
-			case 4:
-				char first = s.charAt(0);
-				char second = s.charAt(1);
-				char third = s.charAt(2);
-				int fourth = Character.getNumericValue(s.charAt(3));
-				if (second == 'x') {
-					if (Character.isLowerCase(first) == true) {
+			}
+			break;
+		case 4:
+			char first = s.charAt(0);
+			char second = s.charAt(1);
+			char third = s.charAt(2);
+			int fourth = Character.getNumericValue(s.charAt(3));
+			if (second == 'x') {
+				if (Character.isLowerCase(first) == true) {
+					for (int i = 0; i < 8; i++) {
+						for (int j = 0; j < 8; j++) {
+							if (chessBoard[i][j].getPiece().getIdentity().equals("Pawn")
+									&& chessBoard[i][j].getPiece().canCapture(getSquare(fourth, third))) {
+								if (count % 2 == 1) {
+									if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+										chessBoard[i][j].getPiece().move(getSquare(fourth, third));
+									}
+								}
+
+								if (count % 2 == 0) {
+									if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+										chessBoard[i][j].getPiece().move(getSquare(fourth, third));
+									}
+								}
+							}
+
+						}
+					}
+				} else {
+					switch (first) {
+					case 'K':
 						for (int i = 0; i < 8; i++) {
 							for (int j = 0; j < 8; j++) {
-								if (chessBoard[i][j].getPiece().getIdentity().equals("Pawn")
-										&& chessBoard[i][j].getPiece().canCapture(getSquare(fourth, third))) {
+								if (chessBoard[i][j].getPiece().getIdentity().equals("King")
+										&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
 									if (count % 2 == 1) {
 										if (chessBoard[i][j].getPiece().getColor().equals("white")) {
 											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
@@ -363,249 +387,226 @@ public class ChessBoard {
 
 							}
 						}
-					} else {
-						switch (first) {
-						case 'K':
-							for (int i = 0; i < 8; i++) {
-								for (int j = 0; j < 8; j++) {
-									if (chessBoard[i][j].getPiece().getIdentity().equals("King")
-											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
-										if (count % 2 == 1) {
-											if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
-										}
+						break;
+					case 'Q':
+						for (int i = 0; i < 8; i++) {
+							for (int j = 0; j < 8; j++) {
 
-										if (count % 2 == 0) {
-											if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
+								if (chessBoard[i][j].getPiece().getIdentity().equals("Queen")
+										&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
+									if (count % 2 == 1) {
+										if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
 										}
 									}
 
-								}
-							}
-							break;
-						case 'Q':
-							for (int i = 0; i < 8; i++) {
-								for (int j = 0; j < 8; j++) {
-
-									if (chessBoard[i][j].getPiece().getIdentity().equals("Queen")
-											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
-										if (count % 2 == 1) {
-											if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
-										}
-
-										if (count % 2 == 0) {
-											if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
+									if (count % 2 == 0) {
+										if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
 										}
 									}
-
 								}
+
 							}
-							break;
-						case 'B':
-							for (int i = 0; i < 8; i++) {
-								for (int j = 0; j < 8; j++) {
-									if (chessBoard[i][j].getPiece().getIdentity().equals("Bishop")
-											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
-										if (count % 2 == 1) {
-											if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
-										}
-
-										if (count % 2 == 0) {
-											if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
-										}
-									}
-
-								}
-							}
-							break;
-						case 'R':
-							for (int i = 0; i < 8; i++) {
-								for (int j = 0; j < 8; j++) {
-
-									if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
-											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
-										if (count % 2 == 1) {
-											if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
-										}
-
-										if (count % 2 == 0) {
-											if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
-										}
-									}
-
-								}
-							}
-							break;
-						case 'N':
-							for (int i = 0; i < 8; i++) {
-								for (int j = 0; j < 8; j++) {
-
-									if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
-											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
-										if (count % 2 == 1) {
-											if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
-										}
-
-										else if (count % 2 == 0) {
-											if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
-										}
-									} else
-										System.out.println("Sorry, you entered an invalid move.");
-
-								}
-							}
-							break;
-						default:
-							System.out.println("Sorry, you entered an invalid move");
-							break;
 						}
-					}
-				} else {
-					if (second != 'x') {
-
-						switch (first) {
-
-						case 'R':
-							for (int i = 0; i < 8; i++) {
-								for (int j = 0; j < 8; j++) {
-
-									if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
-											&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == second
-													|| chessBoard[i][j].getPiece().getCurrentPosition()
-															.getRow() == second)
-											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
-										if (count % 2 == 1) {
-											if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
-										}
-
-										if (count % 2 == 0) {
-											if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
+						break;
+					case 'B':
+						for (int i = 0; i < 8; i++) {
+							for (int j = 0; j < 8; j++) {
+								if (chessBoard[i][j].getPiece().getIdentity().equals("Bishop")
+										&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
+									if (count % 2 == 1) {
+										if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
 										}
 									}
 
-								}
-							}
-							break;
-						case 'N':
-							for (int i = 0; i < 8; i++) {
-								for (int j = 0; j < 8; j++) {
-
-									if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
-											&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == second
-													|| chessBoard[i][j].getPiece().getCurrentPosition()
-															.getRow() == second)
-											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
-										if (count % 2 == 1) {
-											if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
+									if (count % 2 == 0) {
+										if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
 										}
-
-										else if (count % 2 == 0) {
-											if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-												chessBoard[i][j].getPiece().move(getSquare(fourth, third));
-											}
-										}
-									} else {
-										System.out.println("Sorry, you entered an invalid move.");
-
 									}
-
 								}
+
 							}
-							break;
-						default:
-							System.out.println("Sorry, you entered an invalid move");
 						}
+						break;
+					case 'R':
+						for (int i = 0; i < 8; i++) {
+							for (int j = 0; j < 8; j++) {
+
+								if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
+										&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
+									if (count % 2 == 1) {
+										if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
+										}
+									}
+
+									if (count % 2 == 0) {
+										if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
+										}
+									}
+								}
+
+							}
+						}
+						break;
+					case 'N':
+						for (int i = 0; i < 8; i++) {
+							for (int j = 0; j < 8; j++) {
+
+								if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
+										&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
+									if (count % 2 == 1) {
+										if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
+										}
+									}
+
+									else if (count % 2 == 0) {
+										if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
+										}
+									}
+								} else
+									System.out.println("Sorry, you entered an invalid move.");
+
+							}
+						}
+						break;
+					default:
+						System.out.println("Sorry, you entered an invalid move");
+						break;
 					}
 				}
+			} else {
+				if (second != 'x') {
 
-			case 5:
-				char un = s.charAt(0);
-				char dd = s.charAt(1);
-				char quatr = s.charAt(3);
-				int cinc = Character.getNumericValue(s.charAt(4));
-				switch (un) {
+					switch (first) {
 
-				case 'R':
-					for (int i = 0; i < 8; i++) {
-						for (int j = 0; j < 8; j++) {
+					case 'R':
+						for (int i = 0; i < 8; i++) {
+							for (int j = 0; j < 8; j++) {
 
-							if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
-									&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == dd
-											|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == dd)
-									&& chessBoard[i][j].getPiece().canMove(getSquare(cinc, quatr))) {
-								if (count % 2 == 1) {
-									if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-										chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
+								if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
+										&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == second
+												|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == second)
+										&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
+									if (count % 2 == 1) {
+										if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
+										}
+									}
+
+									if (count % 2 == 0) {
+										if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
+										}
 									}
 								}
-
-								if (count % 2 == 0) {
-									if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-										chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
-									}
-								}
-							}
-
-						}
-					}
-					break;
-				case 'N':
-					for (int i = 0; i < 8; i++) {
-						for (int j = 0; j < 8; j++) {
-
-							if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
-									&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == dd
-											|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == dd)
-									&& chessBoard[i][j].getPiece().canMove(getSquare(cinc, quatr))) {
-								if (count % 2 == 1) {
-									if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-										chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
-									}
-								}
-
-								else if (count % 2 == 0) {
-									if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-										chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
-									}
-								}
-							} else {
-								System.out.println("Sorry, you entered an invalid move.");
 
 							}
-
 						}
+						break;
+					case 'N':
+						for (int i = 0; i < 8; i++) {
+							for (int j = 0; j < 8; j++) {
+
+								if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
+										&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == second
+												|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == second)
+										&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
+									if (count % 2 == 1) {
+										if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
+										}
+									}
+
+									else if (count % 2 == 0) {
+										if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+											chessBoard[i][j].getPiece().move(getSquare(fourth, third));
+										}
+									}
+								} else {
+									System.out.println("Sorry, you entered an invalid move.");
+
+								}
+
+							}
+						}
+						break;
+					default:
+						System.out.println("Sorry, you entered an invalid move");
 					}
-					break;
-				default:
-					System.out.println("Sorry, invalid move.");
 				}
-
 			}
+			break;
+
+		case 5:
+			char un = s.charAt(0);
+			char dd = s.charAt(1);
+			char quatr = s.charAt(3);
+			int cinc = Character.getNumericValue(s.charAt(4));
+			switch (un) {
+
+			case 'R':
+				for (int i = 0; i < 8; i++) {
+					for (int j = 0; j < 8; j++) {
+
+						if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
+								&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == dd
+										|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == dd)
+								&& chessBoard[i][j].getPiece().canMove(getSquare(cinc, quatr))) {
+							if (count % 2 == 1) {
+								if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+									chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
+								}
+							}
+
+							if (count % 2 == 0) {
+								if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+									chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
+								}
+							}
+						}
+
+					}
+				}
+				break;
+			case 'N':
+				for (int i = 0; i < 8; i++) {
+					for (int j = 0; j < 8; j++) {
+
+						if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
+								&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == dd
+										|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == dd)
+								&& chessBoard[i][j].getPiece().canMove(getSquare(cinc, quatr))) {
+							if (count % 2 == 1) {
+								if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+									chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
+								}
+							}
+
+							else if (count % 2 == 0) {
+								if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+									chessBoard[i][j].getPiece().move(getSquare(cinc, quatr));
+								}
+							}
+						} else {
+							System.out.println("Sorry, you entered an invalid move.");
+
+						}
+
+					}
+				}
+				break;
+			default:
+				System.out.println("Sorry, invalid move.");
+			}
+			break;
+
 		}
 		this.printBoard(this);
 	}

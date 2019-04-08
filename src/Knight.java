@@ -11,35 +11,28 @@ public class Knight extends Piece {
 		return identity;
 	}
 
-	public boolean canMove(Square s) {
+	protected boolean canMove(Square s) {
 		boolean result = true;
-		if (getChessBoard().oppositeColor(this, s.getPiece()) == true) {
-			ChessBoard temp = getChessBoard(); // for evaluation
-			Piece tempPiece = s.getPiece(); // to put this back in s's spot after
-			Square tempPosition = getCurrentPosition(); // to put this Knight back after
-			temp.getChessBoardArray()[s.rowValue][s.columnValue].setPiece(this);
-			temp.getChessBoardArray()[tempPosition.getRowValue()][tempPosition.getColumnValue()].setPiece(null);
-			if (getChessBoard().kingInCheck(getColor(), temp) == false) {
-				temp.getChessBoardArray()[s.rowValue][s.columnValue].setPiece(tempPiece);
-				temp.getChessBoardArray()[tempPosition.getRowValue()][tempPosition.getColumnValue()].setPiece(this);
-
-				if ((Math.abs(s.getRowValue() - getCurrentPosition().getRowValue()) == 2
-						&& Math.abs(s.getColumnValue() - getCurrentPosition().getColumnValue()) == 1)
-						|| (Math.abs(s.getRowValue() - getCurrentPosition().getRowValue()) == 1
-								&& Math.abs(s.getColumnValue() - getCurrentPosition().getColumnValue()) == 2)) {
-					result = true;
-				}
-
-			} else
-				result = false;
-
-			temp.getChessBoardArray()[s.rowValue][s.columnValue].setPiece(tempPiece);
-			temp.getChessBoardArray()[tempPosition.getRowValue()][tempPosition.getColumnValue()].setPiece(this);
-		}
-
-		else
+		if (canCapture(s) == false) {
 			result = false;
+		} else {
+			ChessBoard temp = getChessBoard();
+			Square returnPosition = getCurrentPosition();
+			Piece tempPiece = s.getPiece();
+			temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(this);
+			temp.getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()].setEmptyPiece();
+			if (getChessBoard().kingInCheck(getColor(), temp) == false) {
+				getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()]
+						.setPiece(this);
+				getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
 
+			} else {
+				result = false;
+			}
+			getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()]
+					.setPiece(this);
+			getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
+		}
 		return result;
 	}
 
@@ -64,9 +57,12 @@ public class Knight extends Piece {
 
 	public void Move(Square s) {
 		if (canMove(s) == true) {
-			Square tempPosition = getCurrentPosition();
+			Square tempPosition = this.getCurrentPosition();
 			s.setPiece(this);
-			tempPosition.setPiece(null);
+			getChessBoard().getChessBoardArray()[tempPosition.getRowValue()][tempPosition.getColumnValue()]
+					.setEmptyPiece();
+		} else {
+			System.out.println("Error, invalid move");
 		}
 	}
 }

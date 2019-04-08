@@ -1,6 +1,8 @@
+
 public class ChessBoard {
 
 	Square[][] chessBoard = new Square[8][8];
+	Square[][] emptyPieceArray = new Square[8][8];
 
 	Pawn whitePawn1 = new Pawn("white");
 	Pawn whitePawn2 = new Pawn("white");
@@ -34,52 +36,166 @@ public class ChessBoard {
 	Bishop blackBishop2 = new Bishop("black");
 	Knight whiteKnight2 = new Knight("white");
 	Knight blackKnight2 = new Knight("black");
-	/*
-	 * EmptyPiece emptyPiecea1 = new EmptyPiece(); EmptyPiece emptyPiecea2 = new
-	 * EmptyPiece(); EmptyPiece emptyPiecea3 = new EmptyPiece(); EmptyPiece
-	 * emptyPiecea4 = new EmptyPiece(); EmptyPiece emptyPiecea5 = new EmptyPiece();
-	 * EmptyPiece emptyPiecea6 = new EmptyPiece(); EmptyPiece emptyPiecea7 = new
-	 * EmptyPiece(); EmptyPiece emptyPiecea8 = new EmptyPiece(); EmptyPiece
-	 * emptyPieceb1 = new EmptyPiece(); EmptyPiece emptyPieceb2 = new EmptyPiece();
-	 * EmptyPiece emptyPieceb3 = new EmptyPiece(); EmptyPiece emptyPieceb4 = new
-	 * EmptyPiece(); EmptyPiece emptyPieceb5 = new EmptyPiece(); EmptyPiece
-	 * emptyPieceb6 = new EmptyPiece(); EmptyPiece emptyPieceb7 = new EmptyPiece();
-	 * EmptyPiece emptyPieceb8 = new EmptyPiece(); EmptyPiece emptyPiecec1 = new
-	 * EmptyPiece(); EmptyPiece emptyPiecec2 = new EmptyPiece(); EmptyPiece
-	 * emptyPiecec3 = new EmptyPiece(); EmptyPiece emptyPiecec4 = new EmptyPiece();
-	 * EmptyPiece emptyPiecec5 = new EmptyPiece(); EmptyPiece emptyPiecec6 = new
-	 * EmptyPiece(); EmptyPiece emptyPiecec7 = new EmptyPiece(); EmptyPiece
-	 * emptyPiecec8 = new EmptyPiece(); EmptyPiece emptyPieced1 = new EmptyPiece();
-	 * EmptyPiece emptyPieced2 = new EmptyPiece(); EmptyPiece emptyPieced3 = new
-	 * EmptyPiece(); EmptyPiece emptyPieced4 = new EmptyPiece(); EmptyPiece
-	 * emptyPieced5 = new EmptyPiece(); EmptyPiece emptyPieced6 = new EmptyPiece();
-	 * EmptyPiece emptyPieced7 = new EmptyPiece(); EmptyPiece emptyPieced8 = new
-	 * EmptyPiece(); EmptyPiece emptyPiecee1 = new EmptyPiece(); EmptyPiece
-	 * emptyPiecee2 = new EmptyPiece(); EmptyPiece emptyPiecee3 = new EmptyPiece();
-	 * EmptyPiece emptyPiecee4 = new EmptyPiece(); EmptyPiece emptyPiecee5 = new
-	 * EmptyPiece(); EmptyPiece emptyPiecee6 = new EmptyPiece(); EmptyPiece
-	 * emptyPiecee7 = new EmptyPiece(); EmptyPiece emptyPiecee8 = new EmptyPiece();
-	 * EmptyPiece emptyPiecef1 = new EmptyPiece(); EmptyPiece emptyPiecef2 = new
-	 * EmptyPiece(); EmptyPiece emptyPiecef3 = new EmptyPiece(); EmptyPiece
-	 * emptyPiecef4 = new EmptyPiece(); EmptyPiece emptyPiecef5 = new EmptyPiece();
-	 * EmptyPiece emptyPiecef6 = new EmptyPiece(); EmptyPiece emptyPiecef7 = new
-	 * EmptyPiece(); EmptyPiece emptyPiecef8 = new EmptyPiece(); EmptyPiece
-	 * emptyPieceg1 = new EmptyPiece(); EmptyPiece emptyPieceg2 = new EmptyPiece();
-	 * EmptyPiece emptyPieceg3 = new EmptyPiece(); EmptyPiece emptyPieceg4 = new
-	 * EmptyPiece(); EmptyPiece emptyPieceg5 = new EmptyPiece(); EmptyPiece
-	 * emptyPieceg6 = new EmptyPiece(); EmptyPiece emptyPieceg7 = new EmptyPiece();
-	 * EmptyPiece emptyPieceg8 = new EmptyPiece(); EmptyPiece emptyPieceh1 = new
-	 * EmptyPiece(); EmptyPiece emptyPieceh2 = new EmptyPiece(); EmptyPiece
-	 * emptyPieceh3 = new EmptyPiece(); EmptyPiece emptyPieceh4 = new EmptyPiece();
-	 * EmptyPiece emptyPieceh5 = new EmptyPiece(); EmptyPiece emptyPieceh6 = new
-	 * EmptyPiece(); EmptyPiece emptyPieceh7 = new EmptyPiece(); EmptyPiece
-	 * emptyPieceh8 = new EmptyPiece();
-	 */
+
+	EmptyPiece emptyPiecea1 = new EmptyPiece();
+	EmptyPiece emptyPiecea2 = new EmptyPiece();
+	EmptyPiece emptyPiecea3 = new EmptyPiece();
+	EmptyPiece emptyPiecea4 = new EmptyPiece();
+	EmptyPiece emptyPiecea5 = new EmptyPiece();
+	EmptyPiece emptyPiecea6 = new EmptyPiece();
+	EmptyPiece emptyPiecea7 = new EmptyPiece();
+	EmptyPiece emptyPiecea8 = new EmptyPiece();
+	EmptyPiece emptyPieceb1 = new EmptyPiece();
+	EmptyPiece emptyPieceb2 = new EmptyPiece();
+	EmptyPiece emptyPieceb3 = new EmptyPiece();
+	EmptyPiece emptyPieceb4 = new EmptyPiece();
+	EmptyPiece emptyPieceb5 = new EmptyPiece();
+	EmptyPiece emptyPieceb6 = new EmptyPiece();
+	EmptyPiece emptyPieceb7 = new EmptyPiece();
+	EmptyPiece emptyPieceb8 = new EmptyPiece();
+	EmptyPiece emptyPiecec1 = new EmptyPiece();
+	EmptyPiece emptyPiecec2 = new EmptyPiece();
+	EmptyPiece emptyPiecec3 = new EmptyPiece();
+	EmptyPiece emptyPiecec4 = new EmptyPiece();
+	EmptyPiece emptyPiecec5 = new EmptyPiece();
+	EmptyPiece emptyPiecec6 = new EmptyPiece();
+	EmptyPiece emptyPiecec7 = new EmptyPiece();
+	EmptyPiece emptyPiecec8 = new EmptyPiece();
+	EmptyPiece emptyPieced1 = new EmptyPiece();
+	EmptyPiece emptyPieced2 = new EmptyPiece();
+	EmptyPiece emptyPieced3 = new EmptyPiece();
+	EmptyPiece emptyPieced4 = new EmptyPiece();
+	EmptyPiece emptyPieced5 = new EmptyPiece();
+	EmptyPiece emptyPieced6 = new EmptyPiece();
+	EmptyPiece emptyPieced7 = new EmptyPiece();
+	EmptyPiece emptyPieced8 = new EmptyPiece();
+	EmptyPiece emptyPiecee1 = new EmptyPiece();
+	EmptyPiece emptyPiecee2 = new EmptyPiece();
+	EmptyPiece emptyPiecee3 = new EmptyPiece();
+	EmptyPiece emptyPiecee4 = new EmptyPiece();
+	EmptyPiece emptyPiecee5 = new EmptyPiece();
+	EmptyPiece emptyPiecee6 = new EmptyPiece();
+	EmptyPiece emptyPiecee7 = new EmptyPiece();
+	EmptyPiece emptyPiecee8 = new EmptyPiece();
+	EmptyPiece emptyPiecef1 = new EmptyPiece();
+	EmptyPiece emptyPiecef2 = new EmptyPiece();
+	EmptyPiece emptyPiecef3 = new EmptyPiece();
+	EmptyPiece emptyPiecef4 = new EmptyPiece();
+	EmptyPiece emptyPiecef5 = new EmptyPiece();
+	EmptyPiece emptyPiecef6 = new EmptyPiece();
+	EmptyPiece emptyPiecef7 = new EmptyPiece();
+	EmptyPiece emptyPiecef8 = new EmptyPiece();
+	EmptyPiece emptyPieceg1 = new EmptyPiece();
+	EmptyPiece emptyPieceg2 = new EmptyPiece();
+	EmptyPiece emptyPieceg3 = new EmptyPiece();
+	EmptyPiece emptyPieceg4 = new EmptyPiece();
+	EmptyPiece emptyPieceg5 = new EmptyPiece();
+	EmptyPiece emptyPieceg6 = new EmptyPiece();
+	EmptyPiece emptyPieceg7 = new EmptyPiece();
+	EmptyPiece emptyPieceg8 = new EmptyPiece();
+	EmptyPiece emptyPieceh1 = new EmptyPiece();
+	EmptyPiece emptyPieceh2 = new EmptyPiece();
+	EmptyPiece emptyPieceh3 = new EmptyPiece();
+	EmptyPiece emptyPieceh4 = new EmptyPiece();
+	EmptyPiece emptyPieceh5 = new EmptyPiece();
+	EmptyPiece emptyPieceh6 = new EmptyPiece();
+	EmptyPiece emptyPieceh7 = new EmptyPiece();
+	EmptyPiece emptyPieceh8 = new EmptyPiece();
 
 	// assigns rows, columns to every square
+	protected void fillEmptyPieceArray() {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				emptyPieceArray[i][j] = new Square();
+			}
+		}
+		emptyPieceArray[0][0].setPiece(emptyPiecea1);
+		emptyPieceArray[0][1].setPiece(emptyPieceb1);
+		emptyPieceArray[0][2].setPiece(emptyPiecec1);
+		emptyPieceArray[0][3].setPiece(emptyPieced1);
+		emptyPieceArray[0][4].setPiece(emptyPiecee1);
+		emptyPieceArray[0][5].setPiece(emptyPiecef1);
+		emptyPieceArray[0][6].setPiece(emptyPieceg1);
+		emptyPieceArray[0][7].setPiece(emptyPieceh1);
+
+		emptyPieceArray[1][0].setPiece(emptyPiecea2);
+		emptyPieceArray[1][1].setPiece(emptyPieceb2);
+		emptyPieceArray[1][2].setPiece(emptyPiecec2);
+		emptyPieceArray[1][3].setPiece(emptyPieced2);
+		emptyPieceArray[1][4].setPiece(emptyPiecee2);
+		emptyPieceArray[1][5].setPiece(emptyPiecef2);
+		emptyPieceArray[1][6].setPiece(emptyPieceg2);
+		emptyPieceArray[1][7].setPiece(emptyPieceh2);
+
+		emptyPieceArray[2][0].setPiece(emptyPiecea3);
+		emptyPieceArray[2][1].setPiece(emptyPieceb3);
+		emptyPieceArray[2][2].setPiece(emptyPiecec3);
+		emptyPieceArray[2][3].setPiece(emptyPieced3);
+		emptyPieceArray[2][4].setPiece(emptyPiecee3);
+		emptyPieceArray[2][5].setPiece(emptyPiecef3);
+		emptyPieceArray[2][6].setPiece(emptyPieceg3);
+		emptyPieceArray[2][7].setPiece(emptyPieceh3);
+
+		emptyPieceArray[3][0].setPiece(emptyPiecea4);
+		emptyPieceArray[3][1].setPiece(emptyPieceb4);
+		emptyPieceArray[3][2].setPiece(emptyPiecec4);
+		emptyPieceArray[3][3].setPiece(emptyPieced4);
+		emptyPieceArray[3][4].setPiece(emptyPiecee4);
+		emptyPieceArray[3][5].setPiece(emptyPiecef4);
+		emptyPieceArray[3][6].setPiece(emptyPieceg4);
+		emptyPieceArray[3][7].setPiece(emptyPieceh4);
+
+		emptyPieceArray[4][0].setPiece(emptyPiecea5);
+		emptyPieceArray[4][1].setPiece(emptyPieceb5);
+		emptyPieceArray[4][2].setPiece(emptyPiecec5);
+		emptyPieceArray[4][3].setPiece(emptyPieced5);
+		emptyPieceArray[4][4].setPiece(emptyPiecee5);
+		emptyPieceArray[4][5].setPiece(emptyPiecef5);
+		emptyPieceArray[4][6].setPiece(emptyPieceg5);
+		emptyPieceArray[4][7].setPiece(emptyPieceh5);
+
+		emptyPieceArray[5][0].setPiece(emptyPiecea6);
+		emptyPieceArray[5][1].setPiece(emptyPieceb6);
+		emptyPieceArray[5][2].setPiece(emptyPiecec6);
+		emptyPieceArray[5][3].setPiece(emptyPieced6);
+		emptyPieceArray[5][4].setPiece(emptyPiecee6);
+		emptyPieceArray[5][5].setPiece(emptyPiecef6);
+		emptyPieceArray[5][6].setPiece(emptyPieceg6);
+		emptyPieceArray[5][7].setPiece(emptyPieceh6);
+
+		emptyPieceArray[6][0].setPiece(emptyPiecea7);
+		emptyPieceArray[6][1].setPiece(emptyPieceb7);
+		emptyPieceArray[6][2].setPiece(emptyPiecec7);
+		emptyPieceArray[6][3].setPiece(emptyPieced7);
+		emptyPieceArray[6][4].setPiece(emptyPiecee7);
+		emptyPieceArray[6][5].setPiece(emptyPiecef7);
+		emptyPieceArray[6][6].setPiece(emptyPieceg7);
+		emptyPieceArray[6][7].setPiece(emptyPieceh7);
+
+		emptyPieceArray[7][0].setPiece(emptyPiecea8);
+		emptyPieceArray[7][1].setPiece(emptyPieceb8);
+		emptyPieceArray[7][2].setPiece(emptyPiecec8);
+		emptyPieceArray[7][3].setPiece(emptyPieced8);
+		emptyPieceArray[7][4].setPiece(emptyPiecee8);
+		emptyPieceArray[7][5].setPiece(emptyPiecef8);
+		emptyPieceArray[7][6].setPiece(emptyPieceg8);
+		emptyPieceArray[7][7].setPiece(emptyPieceh8);
+	}
 
 	protected Square[][] getChessBoardArray() {
 		return chessBoard;
+	}
+
+	protected Square[][] getEmptyPieceArray() {
+		return emptyPieceArray;
+	}
+
+	protected void fillEmptyPieces() {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				getChessBoardArray()[i][j].emptyPiece = emptyPieceArray[i][j].getPiece();
+			}
+		}
 	}
 
 	protected void play(String s, int count) {
@@ -89,21 +205,19 @@ public class ChessBoard {
 			int b = Character.getNumericValue(s.charAt(1));
 			outerloop: for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {
-					if (chessBoard[i][j].getPiece() != null) {
-						if (chessBoard[i][j].getPiece().getIdentity().equals("Pawn")
-								&& chessBoard[i][j].getPiece().canMove(getSquare(b, a))) {
-							if (count % 2 == 1) {
-								if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-									chessBoard[i][j].getPiece().move(getSquare(b, a));
-									break outerloop;
-								}
+					if (chessBoard[i][j].getPiece().getIdentity().equals("Pawn")
+							&& chessBoard[i][j].getPiece().canMove(getSquare(b, a))) {
+						if (count % 2 == 1) {
+							if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+								chessBoard[i][j].getPiece().move(getSquare(b, a));
+								break outerloop;
 							}
+						}
 
-							else if (count % 2 == 0) {
-								if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-									chessBoard[i][j].getPiece().move(getSquare(b, a));
-									break outerloop;
-								}
+						else if (count % 2 == 0) {
+							if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+								chessBoard[i][j].getPiece().move(getSquare(b, a));
+								break outerloop;
 							}
 						}
 					}
@@ -119,19 +233,17 @@ public class ChessBoard {
 			case 'K':
 				for (int i = 0; i < 8; i++) {
 					for (int j = 0; j < 8; j++) {
-						if (chessBoard[i][j].getPiece() != null) {
-							if (chessBoard[i][j].getPiece().getIdentity().equals("King")
-									&& chessBoard[i][j].getPiece().canMove(getSquare(z, y))) {
-								if (count % 2 == 1) {
-									if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-										chessBoard[i][j].getPiece().move(getSquare(z, y));
-									}
+						if (chessBoard[i][j].getPiece().getIdentity().equals("King")
+								&& chessBoard[i][j].getPiece().canMove(getSquare(z, y))) {
+							if (count % 2 == 1) {
+								if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+									chessBoard[i][j].getPiece().move(getSquare(z, y));
 								}
+							}
 
-								if (count % 2 == 0) {
-									if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-										chessBoard[i][j].getPiece().move(getSquare(z, y));
-									}
+							if (count % 2 == 0) {
+								if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+									chessBoard[i][j].getPiece().move(getSquare(z, y));
 								}
 							}
 						}
@@ -141,21 +253,19 @@ public class ChessBoard {
 			case 'Q':
 				outerloop: for (int i = 0; i < 8; i++) {
 					for (int j = 0; j < 8; j++) {
-						if (chessBoard[i][j].getPiece() != null) {
-							if (chessBoard[i][j].getPiece().getIdentity().equals("Queen")
-									&& chessBoard[i][j].getPiece().canMove(getSquare(z, y))) {
-								if (count % 2 == 1) {
-									if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-										chessBoard[i][j].getPiece().move(getSquare(z, y));
-										break outerloop;
-									}
+						if (chessBoard[i][j].getPiece().getIdentity().equals("Queen")
+								&& chessBoard[i][j].getPiece().canMove(getSquare(z, y))) {
+							if (count % 2 == 1) {
+								if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+									chessBoard[i][j].getPiece().move(getSquare(z, y));
+									break outerloop;
 								}
+							}
 
-								else if (count % 2 == 0) {
-									if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-										chessBoard[i][j].getPiece().move(getSquare(z, y));
-										break outerloop;
-									}
+							else if (count % 2 == 0) {
+								if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+									chessBoard[i][j].getPiece().move(getSquare(z, y));
+									break outerloop;
 								}
 							}
 						}
@@ -165,19 +275,17 @@ public class ChessBoard {
 			case 'B':
 				for (int i = 0; i < 8; i++) {
 					for (int j = 0; j < 8; j++) {
-						if (chessBoard[i][j].getPiece() != null) {
-							if (chessBoard[i][j].getPiece().getIdentity().equals("Bishop")
-									&& chessBoard[i][j].getPiece().canMove(getSquare(z, y))) {
-								if (count % 2 == 1) {
-									if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-										chessBoard[i][j].getPiece().move(getSquare(z, y));
-									}
+						if (chessBoard[i][j].getPiece().getIdentity().equals("Bishop")
+								&& chessBoard[i][j].getPiece().canMove(getSquare(z, y))) {
+							if (count % 2 == 1) {
+								if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+									chessBoard[i][j].getPiece().move(getSquare(z, y));
 								}
+							}
 
-								if (count % 2 == 0) {
-									if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-										chessBoard[i][j].getPiece().move(getSquare(z, y));
-									}
+							if (count % 2 == 0) {
+								if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+									chessBoard[i][j].getPiece().move(getSquare(z, y));
 								}
 							}
 						}
@@ -187,19 +295,17 @@ public class ChessBoard {
 			case 'R':
 				for (int i = 0; i < 8; i++) {
 					for (int j = 0; j < 8; j++) {
-						if (chessBoard[i][j].getPiece() != null) {
-							if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
-									&& chessBoard[i][j].getPiece().canMove(getSquare(z, y))) {
-								if (count % 2 == 1) {
-									if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-										chessBoard[i][j].getPiece().move(getSquare(z, y));
-									}
+						if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
+								&& chessBoard[i][j].getPiece().canMove(getSquare(z, y))) {
+							if (count % 2 == 1) {
+								if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+									chessBoard[i][j].getPiece().move(getSquare(z, y));
 								}
+							}
 
-								if (count % 2 == 0) {
-									if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-										chessBoard[i][j].getPiece().move(getSquare(z, y));
-									}
+							if (count % 2 == 0) {
+								if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+									chessBoard[i][j].getPiece().move(getSquare(z, y));
 								}
 							}
 						}
@@ -209,41 +315,37 @@ public class ChessBoard {
 			case 'N':
 				for (int i = 0; i < 8; i++) {
 					for (int j = 0; j < 8; j++) {
-						if (chessBoard[i][j].getPiece() != null) {
-							if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
-									&& chessBoard[i][j].getPiece().canMove(getSquare(z, y))) {
-								if (count % 2 == 1) {
-									if (chessBoard[i][j].getPiece().getColor().equals("white")) {
-										chessBoard[i][j].getPiece().move(getSquare(z, y));
-									}
-								}
 
-								else if (count % 2 == 0) {
-									if (chessBoard[i][j].getPiece().getColor().equals("black")) {
-										chessBoard[i][j].getPiece().move(getSquare(z, y));
-									}
+						if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
+								&& chessBoard[i][j].getPiece().canMove(getSquare(z, y))) {
+							if (count % 2 == 1) {
+								if (chessBoard[i][j].getPiece().getColor().equals("white")) {
+									chessBoard[i][j].getPiece().move(getSquare(z, y));
 								}
-							} else
-								System.out.println("Sorry, you entered an invalid move.");
+							}
 
+							else if (count % 2 == 0) {
+								if (chessBoard[i][j].getPiece().getColor().equals("black")) {
+									chessBoard[i][j].getPiece().move(getSquare(z, y));
+								}
+							}
 						}
+
 					}
 				}
 				break;
 			default:
 				System.out.println("Sorry, you entered an invalid move");
-			}
-			break;
-		case 4:
-			char first = s.charAt(0);
-			char second = s.charAt(1);
-			char third = s.charAt(2);
-			int fourth = Character.getNumericValue(s.charAt(3));
-			if (second == 'x') {
-				if (Character.isLowerCase(first) == true) {
-					for (int i = 0; i < 8; i++) {
-						for (int j = 0; j < 8; j++) {
-							if (chessBoard[i][j].getPiece() != null) {
+				break;
+			case 4:
+				char first = s.charAt(0);
+				char second = s.charAt(1);
+				char third = s.charAt(2);
+				int fourth = Character.getNumericValue(s.charAt(3));
+				if (second == 'x') {
+					if (Character.isLowerCase(first) == true) {
+						for (int i = 0; i < 8; i++) {
+							for (int j = 0; j < 8; j++) {
 								if (chessBoard[i][j].getPiece().getIdentity().equals("Pawn")
 										&& chessBoard[i][j].getPiece().canCapture(getSquare(fourth, third))) {
 									if (count % 2 == 1) {
@@ -258,15 +360,14 @@ public class ChessBoard {
 										}
 									}
 								}
+
 							}
 						}
-					}
-				} else {
-					switch (first) {
-					case 'K':
-						for (int i = 0; i < 8; i++) {
-							for (int j = 0; j < 8; j++) {
-								if (chessBoard[i][j].getPiece() != null) {
+					} else {
+						switch (first) {
+						case 'K':
+							for (int i = 0; i < 8; i++) {
+								for (int j = 0; j < 8; j++) {
 									if (chessBoard[i][j].getPiece().getIdentity().equals("King")
 											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
 										if (count % 2 == 1) {
@@ -281,14 +382,14 @@ public class ChessBoard {
 											}
 										}
 									}
+
 								}
 							}
-						}
-						break;
-					case 'Q':
-						for (int i = 0; i < 8; i++) {
-							for (int j = 0; j < 8; j++) {
-								if (chessBoard[i][j].getPiece() != null) {
+							break;
+						case 'Q':
+							for (int i = 0; i < 8; i++) {
+								for (int j = 0; j < 8; j++) {
+
 									if (chessBoard[i][j].getPiece().getIdentity().equals("Queen")
 											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
 										if (count % 2 == 1) {
@@ -303,14 +404,13 @@ public class ChessBoard {
 											}
 										}
 									}
+
 								}
 							}
-						}
-						break;
-					case 'B':
-						for (int i = 0; i < 8; i++) {
-							for (int j = 0; j < 8; j++) {
-								if (chessBoard[i][j].getPiece() != null) {
+							break;
+						case 'B':
+							for (int i = 0; i < 8; i++) {
+								for (int j = 0; j < 8; j++) {
 									if (chessBoard[i][j].getPiece().getIdentity().equals("Bishop")
 											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
 										if (count % 2 == 1) {
@@ -325,14 +425,14 @@ public class ChessBoard {
 											}
 										}
 									}
+
 								}
 							}
-						}
-						break;
-					case 'R':
-						for (int i = 0; i < 8; i++) {
-							for (int j = 0; j < 8; j++) {
-								if (chessBoard[i][j].getPiece() != null) {
+							break;
+						case 'R':
+							for (int i = 0; i < 8; i++) {
+								for (int j = 0; j < 8; j++) {
+
 									if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
 											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
 										if (count % 2 == 1) {
@@ -347,14 +447,14 @@ public class ChessBoard {
 											}
 										}
 									}
+
 								}
 							}
-						}
-						break;
-					case 'N':
-						for (int i = 0; i < 8; i++) {
-							for (int j = 0; j < 8; j++) {
-								if (chessBoard[i][j].getPiece() != null) {
+							break;
+						case 'N':
+							for (int i = 0; i < 8; i++) {
+								for (int j = 0; j < 8; j++) {
+
 									if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
 											&& chessBoard[i][j].getPiece().canMove(getSquare(fourth, third))) {
 										if (count % 2 == 1) {
@@ -373,22 +473,21 @@ public class ChessBoard {
 
 								}
 							}
+							break;
+						default:
+							System.out.println("Sorry, you entered an invalid move");
+							break;
 						}
-						break;
-					default:
-						System.out.println("Sorry, you entered an invalid move");
-
 					}
-				}
-			} else {
-				if (second != 'x') {
+				} else {
+					if (second != 'x') {
 
-					switch (first) {
+						switch (first) {
 
-					case 'R':
-						for (int i = 0; i < 8; i++) {
-							for (int j = 0; j < 8; j++) {
-								if (chessBoard[i][j].getPiece() != null) {
+						case 'R':
+							for (int i = 0; i < 8; i++) {
+								for (int j = 0; j < 8; j++) {
+
 									if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
 											&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == second
 													|| chessBoard[i][j].getPiece().getCurrentPosition()
@@ -406,14 +505,14 @@ public class ChessBoard {
 											}
 										}
 									}
+
 								}
 							}
-						}
-						break;
-					case 'N':
-						for (int i = 0; i < 8; i++) {
-							for (int j = 0; j < 8; j++) {
-								if (chessBoard[i][j].getPiece() != null) {
+							break;
+						case 'N':
+							for (int i = 0; i < 8; i++) {
+								for (int j = 0; j < 8; j++) {
+
 									if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
 											&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == second
 													|| chessBoard[i][j].getPiece().getCurrentPosition()
@@ -434,27 +533,27 @@ public class ChessBoard {
 										System.out.println("Sorry, you entered an invalid move.");
 
 									}
+
 								}
 							}
+							break;
+						default:
+							System.out.println("Sorry, you entered an invalid move");
 						}
-						break;
-					default:
-						System.out.println("Sorry, you entered an invalid move");
 					}
 				}
-			}
 
-		case 5:
-			char un = s.charAt(0);
-			char dd = s.charAt(1);
-			char quatr = s.charAt(3);
-			int cinc = Character.getNumericValue(s.charAt(4));
-			switch (un) {
+			case 5:
+				char un = s.charAt(0);
+				char dd = s.charAt(1);
+				char quatr = s.charAt(3);
+				int cinc = Character.getNumericValue(s.charAt(4));
+				switch (un) {
 
-			case 'R':
-				for (int i = 0; i < 8; i++) {
-					for (int j = 0; j < 8; j++) {
-						if (chessBoard[i][j].getPiece() != null) {
+				case 'R':
+					for (int i = 0; i < 8; i++) {
+						for (int j = 0; j < 8; j++) {
+
 							if (chessBoard[i][j].getPiece().getIdentity().equals("Rook")
 									&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == dd
 											|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == dd)
@@ -471,14 +570,14 @@ public class ChessBoard {
 									}
 								}
 							}
+
 						}
 					}
-				}
-				break;
-			case 'N':
-				for (int i = 0; i < 8; i++) {
-					for (int j = 0; j < 8; j++) {
-						if (chessBoard[i][j].getPiece() != null) {
+					break;
+				case 'N':
+					for (int i = 0; i < 8; i++) {
+						for (int j = 0; j < 8; j++) {
+
 							if (chessBoard[i][j].getPiece().getIdentity().equals("Knight")
 									&& (chessBoard[i][j].getPiece().getCurrentPosition().getColumn() == dd
 											|| chessBoard[i][j].getPiece().getCurrentPosition().getRow() == dd)
@@ -498,15 +597,17 @@ public class ChessBoard {
 								System.out.println("Sorry, you entered an invalid move.");
 
 							}
+
 						}
 					}
+					break;
+				default:
+					System.out.println("Sorry, invalid move.");
 				}
-				break;
-			default:
-				System.out.println("Sorry, invalid move.");
+
 			}
 		}
-
+		this.printBoard(this);
 	}
 
 	protected Square getSquare(int row, char column) {
@@ -600,36 +701,6 @@ public class ChessBoard {
 	}
 
 	// assigns alternating colors to every square.
-	public void assignChessBoardColors() {
-
-		chessBoard[0][0].setColor("dark");
-
-		for (int i1 = 0; i1 < 8; i1++) {
-			for (int j = 1; j < 8; j++) {
-				if (chessBoard[i1][j - 1].squareColor.equals("dark")) {
-					chessBoard[i1][j].setColor("light");
-				}
-
-				else {
-					if (chessBoard[i1][j - 1].squareColor.equals("light")) {
-						chessBoard[i1][j].setColor("dark");
-					}
-				}
-
-			}
-
-			if (chessBoard[i1][0].squareColor.equals("dark") && i1 != 7) {
-				chessBoard[i1 + 1][0].setColor("light");
-			}
-
-			else {
-				if (chessBoard[i1][0].squareColor.equals("light") && i1 != 7) {
-					chessBoard[i1 + 1][0].setColor("dark");
-				}
-			}
-
-		}
-	}
 
 	protected void fillSquaresWithPieces() { // fills the chessboard with pieces at the start of the game
 		chessBoard[1][0].setPiece(whitePawn1);
@@ -664,81 +735,80 @@ public class ChessBoard {
 		chessBoard[7][3].setPiece(blackQueen);
 		chessBoard[0][4].setPiece(whiteKing);
 		chessBoard[7][4].setPiece(blackKing);
-		/*
-		 * chessBoard[2][0].setPiece(emptyPiecea3);
-		 * chessBoard[2][1].setPiece(emptyPieceb3);
-		 * chessBoard[2][2].setPiece(emptyPiecec3);
-		 * chessBoard[2][3].setPiece(emptyPieced3);
-		 * chessBoard[2][4].setPiece(emptyPiecee3);
-		 * chessBoard[2][5].setPiece(emptyPiecef3);
-		 * chessBoard[2][6].setPiece(emptyPieceg3);
-		 * chessBoard[2][7].setPiece(emptyPieceh3);
-		 * chessBoard[3][0].setPiece(emptyPiecea4);
-		 * chessBoard[3][1].setPiece(emptyPieceb4);
-		 * chessBoard[3][2].setPiece(emptyPiecec4);
-		 * chessBoard[3][3].setPiece(emptyPieced4);
-		 * chessBoard[3][4].setPiece(emptyPiecee4);
-		 * chessBoard[3][5].setPiece(emptyPiecef4);
-		 * chessBoard[3][6].setPiece(emptyPieceg4);
-		 * chessBoard[3][7].setPiece(emptyPieceh4);
-		 * chessBoard[4][0].setPiece(emptyPiecea5);
-		 * chessBoard[4][1].setPiece(emptyPieceb5);
-		 * chessBoard[4][2].setPiece(emptyPiecec5);
-		 * chessBoard[4][3].setPiece(emptyPieced5);
-		 * chessBoard[4][4].setPiece(emptyPiecee5);
-		 * chessBoard[4][5].setPiece(emptyPiecef5);
-		 * chessBoard[4][6].setPiece(emptyPieceg5);
-		 * chessBoard[4][7].setPiece(emptyPieceh5);
-		 * chessBoard[5][0].setPiece(emptyPiecea6);
-		 * chessBoard[5][1].setPiece(emptyPieceb6);
-		 * chessBoard[5][2].setPiece(emptyPiecec6);
-		 * chessBoard[5][3].setPiece(emptyPieced6);
-		 * chessBoard[5][4].setPiece(emptyPiecee6);
-		 * chessBoard[5][5].setPiece(emptyPiecef6);
-		 * chessBoard[5][6].setPiece(emptyPieceg6);
-		 * chessBoard[5][7].setPiece(emptyPieceh6);
-		 */
+		chessBoard[2][0].setPiece(emptyPiecea3);
+		chessBoard[2][1].setPiece(emptyPieceb3);
+		chessBoard[2][2].setPiece(emptyPiecec3);
+		chessBoard[2][3].setPiece(emptyPieced3);
+		chessBoard[2][4].setPiece(emptyPiecee3);
+		chessBoard[2][5].setPiece(emptyPiecef3);
+		chessBoard[2][6].setPiece(emptyPieceg3);
+		chessBoard[2][7].setPiece(emptyPieceh3);
+		chessBoard[3][0].setPiece(emptyPiecea4);
+		chessBoard[3][1].setPiece(emptyPieceb4);
+		chessBoard[3][2].setPiece(emptyPiecec4);
+		chessBoard[3][3].setPiece(emptyPieced4);
+		chessBoard[3][4].setPiece(emptyPiecee4);
+		chessBoard[3][5].setPiece(emptyPiecef4);
+		chessBoard[3][6].setPiece(emptyPieceg4);
+		chessBoard[3][7].setPiece(emptyPieceh4);
+		chessBoard[4][0].setPiece(emptyPiecea5);
+		chessBoard[4][1].setPiece(emptyPieceb5);
+		chessBoard[4][2].setPiece(emptyPiecec5);
+		chessBoard[4][3].setPiece(emptyPieced5);
+		chessBoard[4][4].setPiece(emptyPiecee5);
+		chessBoard[4][5].setPiece(emptyPiecef5);
+		chessBoard[4][6].setPiece(emptyPieceg5);
+		chessBoard[4][7].setPiece(emptyPieceh5);
+		chessBoard[5][0].setPiece(emptyPiecea6);
+		chessBoard[5][1].setPiece(emptyPieceb6);
+		chessBoard[5][2].setPiece(emptyPiecec6);
+		chessBoard[5][3].setPiece(emptyPieced6);
+		chessBoard[5][4].setPiece(emptyPiecee6);
+		chessBoard[5][5].setPiece(emptyPiecef6);
+		chessBoard[5][6].setPiece(emptyPieceg6);
+		chessBoard[5][7].setPiece(emptyPieceh6);
+
 	}
 
 	protected Square getKing(String kingColor) {
 		Square kingPosition = null;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if ((chessBoard[i][j].getPiece() != null)) {
-
-					if ((chessBoard[i][j].getPiece().equals(whiteKing) || chessBoard[i][j].getPiece().equals(blackKing))
-							&& chessBoard[i][j].getPiece().getColor().equals(kingColor)) {
-						kingPosition = chessBoard[i][j];
-					}
+				if ((chessBoard[i][j].getPiece().equals(whiteKing) || chessBoard[i][j].getPiece().equals(blackKing))
+						&& chessBoard[i][j].getPiece().getColor().equals(kingColor)) {
+					kingPosition = chessBoard[i][j];
 				}
 			}
+		}
+		if (kingPosition == null) {
+			System.out.println("82");
 		}
 		return kingPosition;
 	}
 
 	protected boolean oppositeColor(Piece piece1, Piece piece2) {
 		boolean result = true;
-		if (!(piece1 == null || piece2 == null)) {
-			if (piece1.getColor() == piece2.getColor()) {
-				result = false;
-			}
+		if (piece1.getColor() == piece2.getColor()) {
+			result = false;
 		}
 		return result;
 	}
 
-	protected boolean kingInCheck(String color, ChessBoard board) {
+	protected boolean kingInCheck(String color, ChessBoard board) { // the color is to let the method know which color
+																	// king we are talking about. board is for the
+																	// array.
 		boolean result = false;
 		Square targetSquare = getKing(color);
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if (chessBoard[i][j].getPiece() != null) {
-					if (chessBoard[i][j].getPiece().canCapture(targetSquare) == true) {
-						result = true;
-					}
+				if (chessBoard[i][j].getPiece().canCapture(targetSquare) == true) {
+					result = true;
 				}
+
 			}
 		}
 		return result;
+
 	}
 
 	public String currentPlayer(int counter) {
@@ -763,24 +833,48 @@ public class ChessBoard {
 							for (int b = 0; b < 8; b++) {
 
 								if (chessBoard[i][j].getPiece().canMove(chessBoard[a][b]) == true) {
-									ChessBoard temp = new ChessBoard();
+									ChessBoard temp = this;
 									Piece tempPiece = chessBoard[i][j].getPiece();
 									Square tempPosition = chessBoard[i][j];
 									tempPiece.move(temp.getChessBoardArray()[a][b]);
 									temp.getChessBoardArray()[tempPosition.getRowValue()][tempPosition.getColumnValue()]
-											.setPiece(null);
-									if (kingInCheck(color, temp) == false)
+											.setEmptyPiece();
+									if (kingInCheck(color, temp) == false) {
 										result = false;
+									}
+									this.getChessBoardArray()[tempPosition.getRowValue()][tempPosition.getColumnValue()]
+											.setPiece(tempPiece);
+									this.getChessBoardArray()[a][b].setEmptyPiece();
+
 								}
+
 							}
 						}
 					}
 				}
 			}
 		}
+
 		if (result == true) {
 			System.out.println("Checkmate!");
 		}
 		return result;
 	}
+
+	public void printBoard(ChessBoard board) {
+
+		for (int i = 7; i >= 0; i--) {
+			for (int j = 0; j < 8; j++) {
+				if (j != 7) {
+					System.out.print(board.getChessBoardArray()[i][j].getPiece().getColor() + "-"
+							+ board.getChessBoardArray()[i][j].getPiece().getIdentity() + " ");
+				} else {
+					System.out.println(board.getChessBoardArray()[i][j].getPiece().getColor() + "-"
+							+ board.getChessBoardArray()[i][j].getPiece().getIdentity() + " ");
+				}
+			}
+		}
+		System.out.println();
+	}
+
 }

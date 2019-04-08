@@ -10,11 +10,13 @@ public class Game {
 							 */
 		ChessBoard board = new ChessBoard();
 
+		board.fillEmptyPieceArray();
 		board.fillBoardWithSquares();
 		board.standardizeBoardInAllSquares();
 		board.fillSquaresWithPieces();
-		// board.assignChessBoardColors();
+		board.fillEmptyPieces();
 		board.standardizeBoardAmongPieces();
+		board.printBoard(board);
 		Scanner scan = new Scanner(System.in);
 		String move = "";
 
@@ -30,21 +32,6 @@ public class Game {
 
 		scan.close();
 
-	}
-
-	public void printBoard(ChessBoard board) {
-
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
-				if (j != 7) {
-					System.out.print(board.getChessBoardArray()[i][j].getPiece().identity + " "
-							+ board.getChessBoardArray()[i][j].getPiece().getColor() + " ");
-				} else {
-					System.out.println(board.getChessBoardArray()[i][j].getPiece().identity + " "
-							+ board.getChessBoardArray()[i][j].getPiece().getColor());
-				}
-			}
-		}
 	}
 
 }

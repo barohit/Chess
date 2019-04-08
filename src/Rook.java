@@ -12,82 +12,26 @@ public class Rook extends Piece {
 
 	protected boolean canMove(Square s) {
 		boolean result = true;
-		if (getChessBoard().oppositeColor(s.getPiece(), this) == true) {
+		if (canCapture(s) == false) {
+			result = false;
+		} else {
 			ChessBoard temp = getChessBoard();
 			Square returnPosition = getCurrentPosition();
 			Piece tempPiece = s.getPiece();
 			temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(this);
-			temp.getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()].setPiece(null);
+			temp.getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()].setEmptyPiece();
 			if (getChessBoard().kingInCheck(getColor(), temp) == false) {
 				getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()]
 						.setPiece(this);
 				getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
 
-				if (s.getColumnValue() == getCurrentPosition().getColumnValue()) {
-					if (s.getRowValue() > getCurrentPosition().getRowValue()) {
-						int i = getCurrentPosition().getRowValue();
-						while (i < s.getRowValue()) {
-							if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i].getPiece()
-									.equals(this))
-									&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i]
-											.getPiece().equals(null))) {
-								result = false;
-							}
-							i++;
-						}
-					}
-
-					if (s.getRowValue() < getCurrentPosition().getRowValue()) {
-						int i = getCurrentPosition().getRowValue();
-						while (i > s.getRowValue()) {
-							if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i].getPiece()
-									.equals(this))
-									&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i]
-											.getPiece().equals(null))) {
-								result = false;
-							}
-							i--;
-						}
-					}
-				}
-
-				if (s.getRowValue() == getCurrentPosition().getRowValue()) {
-					if (s.getColumnValue() > getCurrentPosition().getColumnValue()) {
-						int i = getCurrentPosition().getColumnValue();
-						while (i < s.getRowValue()) {
-							if (!(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
-									.getPiece().equals(this))
-									&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
-											.getPiece().equals(null))) {
-								result = false;
-							}
-							i++;
-						}
-					}
-
-					if (s.getColumnValue() < getCurrentPosition().getColumnValue()) {
-						int i = getCurrentPosition().getRowValue();
-						while (i > s.getRowValue()) {
-							if (!(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
-									.getPiece().equals(this))
-									&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
-											.getPiece().equals(null))) {
-								result = false;
-							}
-							i--;
-						}
-					}
-				}
-			} else
+			} else {
 				result = false;
-
+			}
 			getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()]
 					.setPiece(this);
 			getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
-
-		} else
-			result = false;
-
+		}
 		return result;
 	}
 
@@ -99,10 +43,10 @@ public class Rook extends Piece {
 				if (s.getRowValue() > getCurrentPosition().getRowValue()) {
 					int i = getCurrentPosition().getRowValue();
 					while (i < s.getRowValue()) {
-						if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i].getPiece()
+						if (!(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()].getPiece()
 								.equals(this))
-								&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i]
-										.getPiece().equals(null))) {
+								&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
+										.getPiece().getIdentity().equals("Empty"))) {
 							result = false;
 						}
 						i++;
@@ -112,10 +56,10 @@ public class Rook extends Piece {
 				if (s.getRowValue() < getCurrentPosition().getRowValue()) {
 					int i = getCurrentPosition().getRowValue();
 					while (i > s.getRowValue()) {
-						if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i].getPiece()
+						if (!(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()].getPiece()
 								.equals(this))
-								&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i]
-										.getPiece().equals(null))) {
+								&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getRowValue()]
+										.getPiece().getIdentity().equals("Empty"))) {
 							result = false;
 						}
 						i--;
@@ -126,11 +70,11 @@ public class Rook extends Piece {
 			else if (s.getRowValue() == getCurrentPosition().getRowValue()) {
 				if (s.getColumnValue() > getCurrentPosition().getColumnValue()) {
 					int i = getCurrentPosition().getColumnValue();
-					while (i < s.getRowValue()) {
-						if (!(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()].getPiece()
+					while (i < s.getColumnValue()) {
+						if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i].getPiece()
 								.equals(this))
-								&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
-										.getPiece().equals(null))) {
+								&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i]
+										.getPiece().getIdentity().equals("Empty"))) {
 							result = false;
 						}
 						i++;
@@ -138,12 +82,12 @@ public class Rook extends Piece {
 				}
 
 				if (s.getColumnValue() < getCurrentPosition().getColumnValue()) {
-					int i = getCurrentPosition().getRowValue();
+					int i = getCurrentPosition().getColumnValue();
 					while (i > s.getRowValue()) {
-						if (!(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()].getPiece()
+						if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i].getPiece()
 								.equals(this))
-								&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
-										.getPiece().equals(null))) {
+								&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getColumnValue()][i]
+										.getPiece().getIdentity().equals("Empty"))) {
 							result = false;
 						}
 						i--;
@@ -161,9 +105,12 @@ public class Rook extends Piece {
 
 	protected void move(Square s) {
 		if (canMove(s) == true) {
-			Square tempPosition = getCurrentPosition();
+			Square tempPosition = this.getCurrentPosition();
 			s.setPiece(this);
-			tempPosition.setPiece(null);
+			getChessBoard().getChessBoardArray()[tempPosition.getRowValue()][tempPosition.getColumnValue()]
+					.setEmptyPiece();
+		} else {
+			System.out.println("Error, invalid move");
 		}
 	}
 }

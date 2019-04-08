@@ -12,63 +12,81 @@ public class Pawn extends Piece {
 		return identity;
 	}
 
-	protected boolean canMove(Square enemyPosition) {
+	protected boolean canMove(Square s) {
 		boolean result = false;
-		if (getColor().equals("white")) {
-			if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
-					.getColumnValue()].getRowValue() <= 7
-					&& getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
-							.getColumnValue()].getPiece() == null) {
-				ChessBoard temp = new ChessBoard();
-				temp = chessBoard;
-				Square returnPosition = getCurrentPosition();
-				temp.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition().getColumnValue()]
-						.setPiece(null);
-				if (temp.kingInCheck(getColor(), temp) == false) {
-					if (enemyPosition.getColumnValue() == this.getCurrentPosition().getColumnValue())
-						result = true;
-				}
-				getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()]
-						.setPiece(this);
-			} else {
-				if (getChessBoard().oppositeColor(this, enemyPosition.getPiece())
-						&& (enemyPosition.getRowValue() - 1 == getCurrentPosition().getRowValue() && Math
-								.abs(enemyPosition.getColumnValue() - 1) == getCurrentPosition().getColumnValue())) {
-					ChessBoard temp = chessBoard;
+		if (s.getColumnValue() == this.getCurrentPosition().getColumnValue()) {
+			if (getColor().equals("white")) {
+				if (getCurrentPosition().getRowValue() == 1 && s.getRowValue() == 3) {
+
+					if (getChessBoard().getChessBoardArray()[2][getCurrentPosition().getColumnValue()].getPiece()
+							.getIdentity().equals("Empty")
+							&& getChessBoard().getChessBoardArray()[3][getCurrentPosition().getColumnValue()].getPiece()
+									.getIdentity().equals("Empty")) {
+						ChessBoard temp = new ChessBoard();
+						temp = chessBoard;
+						Square returnPosition = getCurrentPosition();
+						Piece tempPiece = s.getPiece();
+						temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(this);
+						temp.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition()
+								.getColumnValue()].setEmptyPiece();
+						if (temp.kingInCheck(getColor(), temp) == false) {
+							result = true;
+						}
+						getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition
+								.getColumnValue()].setPiece(this);
+						getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
+					}
+				} else if (s.getRowValue() - 1 == getCurrentPosition().getRowValue()
+						&& s.getPiece().getIdentity().equals("Empty")) {
+					ChessBoard temp = new ChessBoard();
+					temp = chessBoard;
+					Square returnPosition = getCurrentPosition();
+					Piece tempPiece = s.getPiece();
+					temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(this);
 					temp.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition().getColumnValue()]
-							.setPiece(null);
+							.setEmptyPiece();
 					if (temp.kingInCheck(getColor(), temp) == false) {
 						result = true;
 					}
+					getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()]
+							.setPiece(this);
+					getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
 				}
-			}
-		} else if (getColor().equals("black")) {
-			if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 1][getCurrentPosition()
-					.getColumnValue()].getRowValue() >= 0
-					&& getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 1][getCurrentPosition()
-							.getColumnValue()].getPiece() == null) {
-				ChessBoard temp2 = new ChessBoard();
-				temp2 = chessBoard;
-				Square returnPosition2 = getCurrentPosition();
-				temp2.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition().getColumnValue()]
-						.setPiece(null);
-				if (temp2.kingInCheck(getColor(), temp2) == false) {
-					if (enemyPosition.getColumnValue() == this.getCurrentPosition().getColumnValue())
-						result = true;
-				}
-				getChessBoard().getChessBoardArray()[returnPosition2.getRowValue()][returnPosition2.getColumnValue()]
-						.setPiece(this);
-			} else {
-				if (getChessBoard().oppositeColor(this, enemyPosition.getPiece())
-
-						&& (enemyPosition.getRowValue() + 1 == getCurrentPosition().getRowValue() && Math
-								.abs(enemyPosition.getColumnValue() - 1) == getCurrentPosition().getColumnValue())) {
-					ChessBoard temp2 = chessBoard;
-					temp2.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition()
-							.getColumnValue()].setPiece(null);
-					if (temp2.kingInCheck(getColor(), temp2) == false) {
+			} else if (getColor().equals("black")) {
+				if (getCurrentPosition().getRowValue() == 6 && s.getRowValue() == 4) {
+					if (getChessBoard().getChessBoardArray()[5][getCurrentPosition().getColumnValue()].getPiece()
+							.getIdentity().equals("Empty")
+							&& getChessBoard().getChessBoardArray()[4][getCurrentPosition().getColumnValue()].getPiece()
+									.getIdentity().equals("Empty")) {
+						ChessBoard temp = new ChessBoard();
+						temp = chessBoard;
+						Square returnPosition = getCurrentPosition();
+						Piece tempPiece = s.getPiece();
+						temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(this);
+						temp.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition()
+								.getColumnValue()].setEmptyPiece();
+						if (temp.kingInCheck(getColor(), temp) == false) {
+							result = true;
+						}
+						getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition
+								.getColumnValue()].setPiece(this);
+						getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
+					}
+				} else if (s.getRowValue() + 1 == getCurrentPosition().getRowValue()
+						&& s.getPiece().getIdentity().equals("Empty")) {
+					ChessBoard temp = new ChessBoard();
+					temp = chessBoard;
+					Square returnPosition = getCurrentPosition();
+					Piece tempPiece = s.getPiece();
+					temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(this);
+					temp.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition().getColumnValue()]
+							.setEmptyPiece();
+					if (temp.kingInCheck(getColor(), temp) == false) {
 						result = true;
 					}
+					getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()]
+							.setPiece(this);
+					getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
 				}
 			}
 		}
@@ -78,53 +96,13 @@ public class Pawn extends Piece {
 
 	protected void move(Square s) {
 
-		if ((getColor().equals("white") && (getCurrentPosition().getRow() == 2)
-				&& ((s.getColumnValue() == getCurrentPosition().getColumnValue())
-						&& s.getRowValue() - 2 == getCurrentPosition().getRowValue()))) {
-
-			// these two lines update the current position's row value.
-			if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 2][getCurrentPosition()
-					.getColumnValue()].getPiece() == null
-					&& getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
-							.getColumnValue()].getPiece() == null) {
-
-				getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 2][currentPosition
-						.getColumnValue()].setPiece(this);
-				getChessBoard().getChessBoardArray()[currentPosition.getRowValue() - 2][currentPosition
-						.getColumnValue()].setPiece(null);
-			}
-		} else if ((getColor().equals("black") && (getCurrentPosition().getRow() == 7)
-				&& (s.getColumnValue() == getCurrentPosition().getColumnValue())
-				&& s.getRowValue() + 2 == getCurrentPosition().getRowValue())) {
-			{
-
-				if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 2][getCurrentPosition()
-						.getColumnValue()].getPiece() == null
-						&& getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()
-								- 1][getCurrentPosition().getColumnValue()].getPiece() == null) {
-
-					getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 2][getCurrentPosition()
-							.getColumnValue()].setPiece(this);
-					getChessBoard().getChessBoardArray()[currentPosition.getRowValue() + 2][currentPosition
-							.getColumnValue()].setPiece(null);
-				}
-			}
-		} else if ((getColor().equals("white"))) {
-			if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
-					.getColumnValue()].getPiece() == null) {
-				getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() + 1][getCurrentPosition()
-						.getColumnValue()].setPiece(this);
-				getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 1][getCurrentPosition()
-						.getColumnValue()].setPiece(null);
-			}
-		} else if ((getColor().equals("black"))) {
-			if (getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue() - 1][getCurrentPosition()
-					.getColumnValue()].getPiece() == null) {
-				this.getChessBoard().getChessBoardArray()[currentPosition.getRowValue() - 1][currentPosition
-						.getColumnValue()].setPiece(this);
-				this.getChessBoard().getChessBoardArray()[currentPosition.getRowValue() + 1][currentPosition
-						.getColumnValue()].setPiece(null);
-			}
+		if (canMove(s) == true) {
+			Square tempPosition = this.getCurrentPosition();
+			s.setPiece(this);
+			getChessBoard().getChessBoardArray()[tempPosition.getRowValue()][tempPosition.getColumnValue()]
+					.setEmptyPiece();
+		} else {
+			System.out.println("Error, invalid move");
 		}
 	}
 
@@ -159,23 +137,20 @@ public class Pawn extends Piece {
 
 	}
 
-	protected boolean canCapture(Square enemyPosition) {
+	protected boolean canCapture(Square s) {
 		boolean result = false;
-		if (getColor().equals("white") && getChessBoard().oppositeColor(this, enemyPosition.getPiece())
-				&& (enemyPosition.getRowValue() - 1 == getCurrentPosition().getRowValue()
-						&& Math.abs(enemyPosition.getColumnValue() - 1) == getCurrentPosition().getColumnValue())) {
-			result = true;
+		if (getChessBoard().oppositeColor(this, s.getPiece())) {
+			if (getColor().equals("white") && (s.getRowValue() - 1 == getCurrentPosition().getRowValue()
+					&& Math.abs(s.getColumnValue() - getCurrentPosition().getColumnValue()) == 1)) {
+				result = true;
+			} else if ((getColor().equals("black") && getChessBoard().oppositeColor(this, s.getPiece()))
+					&& (s.getRowValue() + 1 == getCurrentPosition().getRowValue()
+							&& Math.abs(s.getColumnValue() - getCurrentPosition().getColumnValue()) == 1)) {
 
-		}
+				result = true;
 
-		else if (getColor().equals("black") && getChessBoard().oppositeColor(this, enemyPosition.getPiece())
-				&& (enemyPosition.getRowValue() + 1 == getCurrentPosition().getRowValue()
-						&& Math.abs(enemyPosition.getColumnValue() - 1) == getCurrentPosition().getColumnValue())) {
-
-			result = true;
-
+			}
 		}
 		return result;
 	}
-
 }

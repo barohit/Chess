@@ -1,18 +1,20 @@
 
 public class EmptyPiece extends Piece {
 
-	String identity = "blank";
-	int placeholderidentityrow;
-	char placeholderidentitycolumn;
 	final String pieceColor = "clear";
+	final String identity = "Empty";
 
 	public EmptyPiece(int i, char a) {
-		int placeholderidentityrow = i;
-		char placeholderidentitycolumn = a;
+		this.getCurrentPosition().setColumn(a);
+		this.getCurrentPosition().setRow(i);
 	}
 
 	public EmptyPiece() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getIdentity() {
+		return identity;
 	}
 
 	protected boolean canMove(Square s) {

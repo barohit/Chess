@@ -11,39 +11,38 @@ public class King extends Piece {
 		return identity;
 	}
 
-	public boolean canMove(Square s) {
-		boolean result = false;
-		if (Math.abs(s.getRowValue() - getCurrentPosition().getRowValue()) == 1
-				&& Math.abs(s.getColumnValue() - getCurrentPosition().getColumnValue()) == 1) {
-			if (s.getChessBoard().oppositeColor(s.getPiece(), this) == true) {
-				ChessBoard temp = getChessBoard();
-				Square returnPosition = getCurrentPosition();
-				temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(this);
-				temp.getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()].setPiece(null);
-				if (getChessBoard().kingInCheck(getColor(), temp) == false) {
-					result = true;
-				}
-				temp.getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()].setPiece(this);
-				temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(null);
+	protected boolean canMove(Square s) {
+		boolean result = true;
+		if (canCapture(s) == false) {
+			result = false;
+		} else {
+			ChessBoard temp = getChessBoard();
+			Square returnPosition = getCurrentPosition();
+			Piece tempPiece = s.getPiece();
+			temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(this);
+			temp.getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()].setEmptyPiece();
+			if (getChessBoard().kingInCheck(getColor(), temp) == false) {
+				getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()]
+						.setPiece(this);
+				getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
+
+			} else {
+				result = false;
 			}
+			getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()]
+					.setPiece(this);
+			getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
 		}
 		return result;
 	}
 
 	public boolean canCapture(Square s) {
 		boolean result = false;
-		if (Math.abs(s.getRowValue() - getCurrentPosition().getRowValue()) == 1
-				&& Math.abs(s.getColumnValue() - getCurrentPosition().getColumnValue()) == 1) {
-			if (s.getChessBoard().oppositeColor(s.getPiece(), this) == true) {
-				ChessBoard temp = getChessBoard();
-				Square returnPosition = getCurrentPosition();
-				temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(this);
-				temp.getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()].setPiece(null);
-				if (getChessBoard().kingInCheck(getColor(), temp) == false) {
-					result = true;
-				}
-				temp.getChessBoardArray()[returnPosition.getRowValue()][returnPosition.getColumnValue()].setPiece(this);
-				temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(null);
+
+		if (s.getChessBoard().oppositeColor(s.getPiece(), this) == true) {
+			if (Math.abs(s.getRowValue() - getCurrentPosition().getRowValue()) <= 1
+					&& Math.abs(s.getColumnValue() - getCurrentPosition().getColumnValue()) <= 1) {
+				result = true;
 			}
 		}
 		return result;
@@ -51,10 +50,12 @@ public class King extends Piece {
 
 	public void move(Square s) {
 		if (canMove(s) == true) {
-			Square temp = getCurrentPosition();
-			getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(this);
-			temp.setPiece(null);
-
+			Square tempPosition = this.getCurrentPosition();
+			s.setPiece(this);
+			getChessBoard().getChessBoardArray()[tempPosition.getRowValue()][tempPosition.getColumnValue()]
+					.setEmptyPiece();
+		} else {
+			System.out.println("Error, invalid move");
 		}
 	}
 }

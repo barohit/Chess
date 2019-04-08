@@ -1,8 +1,8 @@
 
 public class Square {
 
-	String squareColor;
 	Piece currentPiece;
+	Piece emptyPiece;
 	char column = 'a';
 	int columnValue = 0; // refers to columns using a numerical value for simplicity.
 	int row = 1;
@@ -18,21 +18,23 @@ public class Square {
 	}
 
 	protected Piece getPiece() {
-		if (this.currentPiece != null)
-			return this.currentPiece;
-		else
-			return null;
+		return this.currentPiece;
+	}
+
+	protected Piece getEmptyPiece() {
+		return this.emptyPiece;
 	}
 
 	protected void setPiece(Piece piece) {
-		if (piece != null) {
-			piece.setCurrentPosition(this);
 
-			currentPiece = piece;
-		} else if (piece == null) {
-			currentPiece = piece;
-		}
+		piece.setCurrentPosition(this);
 
+		currentPiece = piece;
+
+	}
+
+	protected void setEmptyPiece() {
+		currentPiece = emptyPiece;
 	}
 
 	protected char getColumn() {
@@ -102,10 +104,6 @@ public class Square {
 	protected void setRowValue(int i) {
 		rowValue = i;
 		convertRowValuetoRow(i);
-	}
-
-	protected void setColor(String color) {
-		squareColor = color;
 	}
 
 	protected void convertRowtoRowValue(int roww) {
@@ -193,11 +191,11 @@ public class Square {
 			break;
 
 		case 'g':
-			square.columnValue = '6';
+			square.columnValue = 6;
 			break;
 
 		case 'h':
-			square.columnValue = '7';
+			square.columnValue = 7;
 			break;
 
 		default:
@@ -255,7 +253,7 @@ public class Square {
 
 	protected int getColumnValueFromColumn(char column) {
 
-		int result = '0';
+		int result = 0;
 
 		switch (column) {
 

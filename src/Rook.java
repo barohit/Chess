@@ -5,6 +5,7 @@ public class Rook extends Piece {
 	}
 
 	final String identity = "Rook";
+	boolean hasMoved = false;
 
 	public String getIdentity() {
 		return identity;
@@ -58,7 +59,7 @@ public class Rook extends Piece {
 					while (i > s.getRowValue()) {
 						if (!(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()].getPiece()
 								.equals(this))
-								&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getRowValue()]
+								&& !(getChessBoard().getChessBoardArray()[i][getCurrentPosition().getColumnValue()]
 										.getPiece().getIdentity().equals("Empty"))) {
 							result = false;
 						}
@@ -83,10 +84,10 @@ public class Rook extends Piece {
 
 				if (s.getColumnValue() < getCurrentPosition().getColumnValue()) {
 					int i = getCurrentPosition().getColumnValue();
-					while (i > s.getRowValue()) {
+					while (i > s.getColumnValue()) {
 						if (!(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i].getPiece()
 								.equals(this))
-								&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getColumnValue()][i]
+								&& !(getChessBoard().getChessBoardArray()[getCurrentPosition().getRowValue()][i]
 										.getPiece().getIdentity().equals("Empty"))) {
 							result = false;
 						}
@@ -109,8 +110,13 @@ public class Rook extends Piece {
 			s.setPiece(this);
 			getChessBoard().getChessBoardArray()[tempPosition.getRowValue()][tempPosition.getColumnValue()]
 					.setEmptyPiece();
+			hasMoved = true;
 		} else {
 			System.out.println("Error, invalid move");
 		}
+	}
+
+	public boolean getHasMoved() {
+		return hasMoved;
 	}
 }

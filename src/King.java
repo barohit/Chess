@@ -6,6 +6,7 @@ public class King extends Piece {
 	}
 
 	final String identity = "King";
+	boolean hasMoved = false;
 
 	public String getIdentity() {
 		return identity;
@@ -54,8 +55,14 @@ public class King extends Piece {
 			s.setPiece(this);
 			getChessBoard().getChessBoardArray()[tempPosition.getRowValue()][tempPosition.getColumnValue()]
 					.setEmptyPiece();
+			hasMoved = true;
 		} else {
 			System.out.println("Error, invalid move");
 		}
 	}
+
+	public boolean getHasMoved() {
+		return hasMoved;
+	}
+
 }

@@ -12,7 +12,10 @@ public class King extends Piece {
 		return identity;
 	}
 
-	protected boolean canMove(Square s) {
+	protected boolean canMove(Square s) { 
+		/* similar to canMove method from every other piece, but has to check that the resulting
+		 * square does not put the King in check
+		 */
 		boolean result = true;
 		if (canCapture(s) == false) {
 			result = false;
@@ -43,7 +46,8 @@ public class King extends Piece {
 		if (s.getChessBoard().oppositeColor(s.getPiece(), this) == true) {
 			if (Math.abs(s.getRowValue() - getCurrentPosition().getRowValue()) <= 1
 					&& Math.abs(s.getColumnValue() - getCurrentPosition().getColumnValue()) <= 1) {
-				result = true;
+				result = true; // just checks to see if any square one diagonal or one square 
+				// vertically or horizontally from the current square is occupied
 			}
 		}
 		return result;

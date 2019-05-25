@@ -12,12 +12,13 @@ public class Pawn extends Piece {
 		return identity;
 	}
 
-	protected boolean canMove(Square s) {
+	protected boolean canMove(Square s) { /* this method doesn't use the can capture method like every other
+		 piece because the pawns move and capture differently */
 		boolean result = false;
 		if (s.getColumnValue() == this.getCurrentPosition().getColumnValue()) {
-			if (getColor().equals("white")) {
+			if (getColor().equals("white")) { // the actual row is dependent upon piece color
 				if (getCurrentPosition().getRowValue() == 1 && s.getRowValue() == 3) {
-
+					// above checks to see if the piece is on the starting row
 					if (getChessBoard().getChessBoardArray()[2][getCurrentPosition().getColumnValue()].getPiece()
 							.getIdentity().equals("Empty")
 							&& getChessBoard().getChessBoardArray()[3][getCurrentPosition().getColumnValue()].getPiece()
@@ -28,16 +29,16 @@ public class Pawn extends Piece {
 						Piece tempPiece = s.getPiece();
 						temp.getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(this);
 						temp.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition()
-								.getColumnValue()].setEmptyPiece();
+								.getColumnValue()].setEmptyPiece(); 
 						if (temp.kingInCheck(getColor(), temp) == false) {
 							result = true;
-						}
+						} // above several lines checks to see if moving the pawn places the king in check
 						getChessBoard().getChessBoardArray()[returnPosition.getRowValue()][returnPosition
 								.getColumnValue()].setPiece(this);
 						getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
 					}
 				} else if (s.getRowValue() - 1 == getCurrentPosition().getRowValue()
-						&& s.getPiece().getIdentity().equals("Empty")) {
+						&& s.getPiece().getIdentity().equals("Empty")) {// now we are seeing if the move input is only one square away
 					ChessBoard temp = new ChessBoard();
 					temp = chessBoard;
 					Square returnPosition = getCurrentPosition();
@@ -52,7 +53,7 @@ public class Pawn extends Piece {
 							.setPiece(this);
 					getChessBoard().getChessBoardArray()[s.getRowValue()][s.getColumnValue()].setPiece(tempPiece);
 				}
-			} else if (getColor().equals("black")) {
+			} else if (getColor().equals("black")) { // same logic but opposite color
 				if (getCurrentPosition().getRowValue() == 6 && s.getRowValue() == 4) {
 					if (getChessBoard().getChessBoardArray()[5][getCurrentPosition().getColumnValue()].getPiece()
 							.getIdentity().equals("Empty")
@@ -106,7 +107,7 @@ public class Pawn extends Piece {
 		}
 	}
 
-	protected void capture(Square enemyPosition) {
+	protected void capture(Square enemyPosition) { // this required a separate method because of the difference
 		ChessBoard temp = chessBoard;
 		temp.getChessBoardArray()[getCurrentPosition().getRowValue()][getCurrentPosition().getColumnValue()]
 				.setPiece(null);
@@ -137,7 +138,7 @@ public class Pawn extends Piece {
 
 	}
 
-	protected boolean canCapture(Square s) {
+	protected boolean canCapture(Square s) { // decides whether or not pawn can capture, distinct from movement. 
 		boolean result = false;
 		if (getChessBoard().oppositeColor(this, s.getPiece())) {
 			if (getColor().equals("white") && (s.getRowValue() - 1 == getCurrentPosition().getRowValue()

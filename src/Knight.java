@@ -36,7 +36,8 @@ public class Knight extends Piece {
 		return result;
 	}
 
-	public boolean canCapture(Square s) {
+	public boolean canCapture(Square s) { /* checks to see if a square is 2 squares away 
+		horizontally and 1 square away vertically or vice versa */
 
 		boolean result = true;
 		if (getChessBoard().oppositeColor(this, s.getPiece()) == true) {

@@ -11,7 +11,7 @@ public class Queen extends Piece {
 		return identity;
 	}
 
-	protected boolean canMove(Square s) {
+	protected boolean canMove(Square s) { // same as all other pieces
 		boolean result = true;
 		if (canCapture(s) == false) {
 			result = false;
@@ -36,7 +36,7 @@ public class Queen extends Piece {
 		return result;
 	}
 
-	public boolean canCapture(Square s) {
+	public boolean canCapture(Square s) { // essentially a combination of the rook and bishop's logic. 
 
 		boolean result = true;
 		if (getChessBoard().oppositeColor(s.getPiece(), this) == true) {

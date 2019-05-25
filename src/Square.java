@@ -33,7 +33,7 @@ public class Square {
 
 	}
 
-	protected void setEmptyPiece() {
+	protected void setEmptyPiece() { 
 		currentPiece = emptyPiece;
 	}
 
@@ -57,7 +57,7 @@ public class Square {
 		return columnValue;
 	}
 
-	protected void setColumnValue(int i) {
+	protected void setColumnValue(int i) { // maps the numerical value to the column letter
 		columnValue = i;
 		switch (i) {
 		case 0:

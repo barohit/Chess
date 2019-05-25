@@ -16,17 +16,20 @@ public class Game {
 		board.fillSquaresWithPieces();
 		board.fillEmptyPieces();
 		board.standardizeBoardAmongPieces();
+		// above 6 methods set up the board 
+		
 		board.printBoard(board);
 		Scanner scan = new Scanner(System.in);
 		String move = "";
 
 		while (board.evaluateCheckmate(board.currentPlayer(counter), board) == false) {
-
+			/* keeps the game going until one player is in checkmate, at which point the other
+			 player wins */
 			System.out.println("Select your move.");
 			move = scan.next();
 
 			board.play(move, counter);
-			counter++;
+			counter++; 
 
 		}
 

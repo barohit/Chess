@@ -36,7 +36,7 @@ public class Rook extends Piece {
 		return result;
 	}
 
-	protected boolean canCapture(Square s) {
+	protected boolean canCapture(Square s) { // see if every square above, below, to the left or the right is empty depending on where the target square is.
 
 		boolean result = true;
 		if (getChessBoard().oppositeColor(s.getPiece(), this) == true) {
@@ -116,7 +116,7 @@ public class Rook extends Piece {
 		}
 	}
 
-	public boolean getHasMoved() {
+	public boolean getHasMoved() { // for castling purposes
 		return hasMoved;
 	}
 }

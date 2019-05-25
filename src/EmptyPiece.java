@@ -1,7 +1,7 @@
 
 public class EmptyPiece extends Piece {
 
-	final String pieceColor = "clear";
+	final String pieceColor = "clear"; // opposite color method in chessboard will always return true
 	final String identity = "Empty";
 
 	public EmptyPiece(int i, char a) {
